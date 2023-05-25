@@ -1,0 +1,17 @@
+{
+  "name": "sunset/jf_area_de_membros",
+  "autoload": {
+    "psr-4": {
+      "app\\": "app/"
+    },
+    "files":[
+      "app/helpers/helpers.php"
+    ]
+  },
+  "require": {
+    "slim/slim": "^4.10",
+    "slim/psr7": "^1.5",
+    "league/plates": "^3.4",
+    "vlucas/phpdotenv": "^5.3"
+  }
+}
