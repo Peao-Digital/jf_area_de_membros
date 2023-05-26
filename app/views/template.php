@@ -18,6 +18,12 @@
     
     <div id="container">
       <?= $this->section('content') ?>
+
+      <?php if (isset($guard)): ?>
+        <input type="hidden" class="valid" name="<?= $guard->getTokenNameKey() ?>" value="<?= $guard->getTokenName() ?>">
+        <input type="hidden" class="valid" name="<?=  $guard->getTokenValueKey() ?>" value="<?= $guard->getTokenValue()?>">
+      <?php endif; ?>
+      
     </div>
 
   </body>

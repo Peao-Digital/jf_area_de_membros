@@ -12,6 +12,7 @@
     "slim/slim": "^4.10",
     "slim/psr7": "^1.5",
     "league/plates": "^3.4",
-    "vlucas/phpdotenv": "^5.3"
+    "vlucas/phpdotenv": "^5.3",
+    "slim/csrf": "^1.3"
   }
 }

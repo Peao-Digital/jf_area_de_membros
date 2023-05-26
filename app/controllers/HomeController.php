@@ -6,8 +6,8 @@
   use Psr\Http\Message\ServerRequestInterface as Request;
 
   class HomeController {
-    public function index(Request $request, Response $response) {
-      view('index');
+    public function index($request, $response, $_guard) {
+      load_view('index', $data = [], $_guard);
       return $response;
     }
   }

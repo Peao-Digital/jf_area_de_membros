@@ -1,9 +1,22 @@
 <?php
   use Slim\App;
+  use app\middlewares\CsrfMiddleware;
   use app\controllers\HomeController;
-  use app\controllers\CursoController;
+  use app\controllers\ProdutoController;
+  use app\controllers\WebHookController;
 
-  return function(App $app) {
-    $app->get('/', [HomeController::class, 'index']);
-    $app->get('/cursos', [CursoController::class, 'index']);
+  return function(App $app) use ($guard) {
+    $app->get('/', function($request, $response, $args) use ($app, $guard) {
+      return (new HomeController)->index($request, $response, $guard);
+    });
+
+    $app->get('/produtos', function($request, $response, $args) use ($app, $guard) {
+      return (new ProdutoController)->index($request, $response, $guard);
+    })->add(new CsrfMiddleware($guard));
+
+    $app->get('/produtos/consultar', function($request, $response, $args) use ($app, $guard) {
+      return (new ProdutoController)->consultar($request, $response);
+    })->add(new CsrfMiddleware($guard));
+
+    $app->post('/webhook', WebHookController::class);
   };
