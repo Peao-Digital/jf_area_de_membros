@@ -2,6 +2,4 @@
 
 PAGINA INICIAL
 
-<?php print_r($_SERVER); ?>
-
 <script src="/js/app/index.js"></script>

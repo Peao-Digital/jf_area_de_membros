@@ -16,7 +16,7 @@
       return $response;
     }
 
-    public function get_json() {
+    private function get_json() {
       $filePath = 'php://input';
       
       try {
@@ -35,5 +35,9 @@
 
         return null;
       }
+    }
+
+    private function salvar($json) {
+      
     }
   }
