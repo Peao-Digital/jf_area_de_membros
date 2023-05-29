@@ -2,4 +2,4 @@
 
 PAGINA DE PRODUTOS
 
-<script src="/js/app/cursos.js"></script>
+<script src="/js/app/produtos.js"></script>

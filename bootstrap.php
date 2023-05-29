@@ -1,6 +1,6 @@
 <?php
 
-  require '../vendor/autoload.php';
+  require 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 
   use Psr\Http\Message\ResponseInterface as Response;
   use Psr\Http\Message\ServerRequestInterface as Request;

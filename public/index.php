@@ -15,7 +15,6 @@
   $app->addRoutingMiddleware();
   $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 
-  
   /* Criando a validação por token CSRF */
   $responseFactory = new ResponseFactory();
   $guard = new Guard($responseFactory);
@@ -23,6 +22,7 @@
   $csrfValueKey = $guard->getTokenValueKey();
   $keyPair = $guard->generateToken();
 
+  //Adicionando as rotas
   $routes = require ROOT . DIRECTORY_SEPARATOR . 'app' . DIRECTORY_SEPARATOR . 'routes.php';
   $routes($app);
 

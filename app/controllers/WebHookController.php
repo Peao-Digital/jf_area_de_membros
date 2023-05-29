@@ -5,12 +5,19 @@
   use Psr\Http\Message\ResponseInterface as Response;
   use Psr\Http\Message\ServerRequestInterface as Request;
 
+  use app\database\PDOConnection;
+  use app\models\{Ordem, Cliente, Item, Log};
+
   class WebHookController {
+    private $log = null;
+
     public function __invoke(Request $request, Response $response, $args = []) {
-      
+      $db = new PDOConnection($_ENV);
+      $this->log = new Log();
+
       $json = $this->get_json();
       if ($json != null) {
-        $this->salvar($json);
+        $this->salvar_dados($db, $json);
       }
       
       return $response;
@@ -25,19 +32,77 @@
         $jsonObj  = json_decode($jsonData, true);
       
         if (is_null($jsonObj)) {
-          print_r('erro');
+          $this->log->descricao = 'Erro ao descodificar o json.';
+          $this->log->erro = $jsonData;
+          $this->log->salvar();
         }
         
         return $jsonObj;
       } catch (Exception $e) {
-        echo '{"result":"FALSE","message":"Caught exception: ' . 
-          $e->getMessage() . ' ~' . $filePath . '"}';
+        $this->log->descricao = 'Erro ao descodificar o json.';
+        $this->log->erro = $e->getMessage();
+        $this->log->salvar();
 
         return null;
       }
     }
 
-    private function salvar($json) {
-      
+    private function salvar_dados($db, $json) {
+      try{
+        $ordem = new Ordem($db, $json);
+        /* Conferindo se a esta ordem ja foi gravada (hash e data-horario) */
+
+        if($ordem->existe()) {
+          $this->log->descricao = 'Ordem possivelmente repetida!';
+          $this->log->erro = json_encode($json['order']);
+          $this->log->salvar();
+          return true;
+        }
+
+        /* Gravando a ordem */
+        if(!$ordem->salvar(false)) {
+          $this->log->descricao = 'Erro ao gravar a ordem!';
+          $this->log->erro = json_encode($json['order']);
+          $this->log->salvar();
+
+          $db->rollback();
+          return false;
+        }
+
+        
+        /* Gravando (atualizando) o cliente */
+        $cliente = new Cliente($db, $json['customer']);
+        $cliente->ordem_id = $ordem->id;
+        if(!$cliente->salvar(false)) {
+          $this->log->descricao = 'Erro ao gravar o cliente!';
+          $this->log->erro = json_encode($json['customer']);
+          $this->log->salvar();
+
+          $db->rollback();
+          return false;
+        }
+        
+        /* Gravando o item */
+        $item = new Item($db, $json['item']);
+        $item->ordem_id = $ordem->id;
+        if(!$item->salvar(false)) {
+          $this->log->descricao = 'Erro ao gravar o item!';
+          $this->log->erro = json_encode($json['item']);
+          $this->log->salvar();
+
+          $db->rollback();
+          return false;
+        }
+        
+        $db->commit();
+        return true;
+      } catch(Exception $e) {
+        $this->log->descricao = 'Erro ao gravar os dados!';
+        $this->log->erro = $e->getMessage();
+        $this->log->salvar();
+        
+        $db->rollback();
+        return false;
+      } 
     }
   }
