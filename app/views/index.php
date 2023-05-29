@@ -2,4 +2,4 @@
 
 Em desenvolvimento
 
-<script src="/js/app/index.js"></script>
+<script src="<?= $_ENV['BASE_PATH'] ?>/js/app/index.js"></script>

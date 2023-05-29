@@ -12,6 +12,7 @@
   session_start();
   
   $app = AppFactory::create();
+  $app->setBasePath($_ENV['BASE_PATH']);
   $app->addRoutingMiddleware();
   $errorMiddleware = $app->addErrorMiddleware(true, true, true);
 

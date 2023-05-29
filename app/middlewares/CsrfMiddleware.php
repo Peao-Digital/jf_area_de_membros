@@ -25,7 +25,7 @@
 
       if($name == null) {
         if ($request->getMethod() == 'GET') {
-          return $response->withHeader('Location', '/?redirected=1')->withStatus(302);
+          return $response->withHeader('Location', $_ENV['BASE_PATH'] . '/?redirected=1')->withStatus(302);
         } else {          
           $response->getBody()->write(json_encode($json_erro));
           return $response->withHeader('content-type', 'application/json');
