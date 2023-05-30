@@ -17,7 +17,13 @@
 
       $json = $this->get_json();
       if ($json != null) {
-        $this->salvar_dados($db, $json);
+        if(in_array($json['token']??null, $_ENV['TOKENS_TICTO'])) {
+          $this->salvar_dados($db, $json);
+        } else {
+          $this->log->descricao = 'Token não encontrado!';
+          $this->log->erro = json_encode($json);
+          $this->log->salvar();
+        }
       }
       
       return $response;
@@ -62,7 +68,7 @@
         /* Gravando a ordem */
         if(!$ordem->salvar(false)) {
           $this->log->descricao = 'Erro ao gravar a ordem!';
-          $this->log->erro = json_encode($json['order']);
+          $this->log->erro = json_encode($json['order'] . $this->db->get_error());
           $this->log->salvar();
 
           $db->rollback();
@@ -75,7 +81,7 @@
         $cliente->ordem_id = $ordem->id;
         if(!$cliente->salvar(false)) {
           $this->log->descricao = 'Erro ao gravar o cliente!';
-          $this->log->erro = json_encode($json['customer']);
+          $this->log->erro = json_encode($json['customer'] . $this->db->get_error());
           $this->log->salvar();
 
           $db->rollback();
@@ -87,7 +93,7 @@
         $item->ordem_id = $ordem->id;
         if(!$item->salvar(false)) {
           $this->log->descricao = 'Erro ao gravar o item!';
-          $this->log->erro = json_encode($json['item']);
+          $this->log->erro = json_encode($json['item'] . $this->db->get_error());
           $this->log->salvar();
 
           $db->rollback();

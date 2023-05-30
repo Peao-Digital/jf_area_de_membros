@@ -26,5 +26,9 @@
     error_reporting(E_ALL);
   }
 
-  $_ENV['TOKENS_TICTO'] = explode(',', $_ENV['TOKENS_TICTO']);
+  if(isset($_ENV['TOKENS_TICTO'])) {
+    $_ENV['TOKENS_TICTO'] = explode(',', $_ENV['TOKENS_TICTO']);
+  } else {
+    $_ENV['TOKENS_TICTO'] = [];
+  }
   
