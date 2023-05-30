@@ -12,6 +12,11 @@
 
       $teste = empty($token)? null: $token[0];
       $token = empty($token)? null: str_replace(['Token ', 'Bearer '], ['',''], $token[0]);
+
+      $myfile = fopen("newfile.txt", "w") or die("Unable to open file!");
+      $txt = $teste;
+      fwrite($myfile, $txt);
+      fclose($myfile);
       
       if(!in_array($token, $_ENV['TOKENS_TICTO'])) {
         $response = new Response();
