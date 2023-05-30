@@ -18,7 +18,9 @@
   }
 
   $app->addRoutingMiddleware();
-  $errorMiddleware = $app->addErrorMiddleware(true, true, true);
+  if($_ENV['DEBUG']) {
+    $errorMiddleware = $app->addErrorMiddleware(true, true, true);
+  }
 
   /* Criando a validação por token CSRF */
   $responseFactory = new ResponseFactory();

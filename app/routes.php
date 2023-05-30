@@ -1,6 +1,6 @@
 <?php
   use Slim\App;
-  use app\middlewares\CsrfMiddleware;
+  use app\middlewares\{CsrfMiddleware, TokenMiddleware};
   use app\controllers\HomeController;
   use app\controllers\ProdutoController;
   use app\controllers\WebHookController;
@@ -18,5 +18,5 @@
       return (new ProdutoController)->consultar($request, $response);
     })->add(new CsrfMiddleware($guard));
 
-    $app->post('/webhook', WebHookController::class);
+    $app->any('/webhook', WebHookController::class)->add(new TokenMiddleware());
   };
