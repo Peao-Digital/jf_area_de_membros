@@ -1,7 +1,7 @@
 CREATE TABLE ticto_ordem (
   id int NOT NULL AUTO_INCREMENT,
   data_ordem date null,
-  data_horario timestamp,
+  data_horario timestamp null,
   hash_ordem varchar(300),
   valor numeric,
   parcelas numeric,
@@ -10,6 +10,8 @@ CREATE TABLE ticto_ordem (
   tipo_comissao varchar(30),
   tipo_comissao_desc varchar(40),
   coletado_em timestamp default current_timestamp(),
+  status varchar(30) null,
+  status_desc varchar(30) null,
   PRIMARY KEY(id)
 );
 

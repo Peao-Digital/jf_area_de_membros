@@ -68,7 +68,7 @@
         /* Gravando a ordem */
         if(!$ordem->salvar(false)) {
           $this->log->descricao = 'Erro ao gravar a ordem!';
-          $this->log->erro = json_encode($json['order'] . $this->db->get_error());
+          $this->log->erro = json_encode($json['order'] . $ordem->db->get_error());
           $this->log->salvar();
 
           $db->rollback();
@@ -81,7 +81,7 @@
         $cliente->ordem_id = $ordem->id;
         if(!$cliente->salvar(false)) {
           $this->log->descricao = 'Erro ao gravar o cliente!';
-          $this->log->erro = json_encode($json['customer'] . $this->db->get_error());
+          $this->log->erro = json_encode($json['customer'] . $cliente->db->get_error());
           $this->log->salvar();
 
           $db->rollback();
@@ -93,7 +93,7 @@
         $item->ordem_id = $ordem->id;
         if(!$item->salvar(false)) {
           $this->log->descricao = 'Erro ao gravar o item!';
-          $this->log->erro = json_encode($json['item'] . $this->db->get_error());
+          $this->log->erro = json_encode($json['item'] . $item->db->get_error());
           $this->log->salvar();
 
           $db->rollback();
