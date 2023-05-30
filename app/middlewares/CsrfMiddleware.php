@@ -19,7 +19,7 @@
 
       $name = isset($method[$this->guard->getTokenNameKey()])? $method[$this->guard->getTokenNameKey()]: null;
       $value = isset($method[$this->guard->getTokenValueKey()])? $method[$this->guard->getTokenValueKey()]: null;
-      $value = str_replace(' ', '+', $value);
+      $value = $value == null? $value:str_replace(' ', '+', $value);
 
       $json_erro = json_encode(['erro' => 'Acesso inválido!']);
 
