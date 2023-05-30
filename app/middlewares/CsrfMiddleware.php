@@ -23,18 +23,18 @@
 
       $json_erro = json_encode(['erro' => 'Acesso inválido!']);
 
-      if($name == null) {
+      if($name == null || $value == null) {
+        $response = new R();
         if ($request->getMethod() == 'GET') {
           return $response->withHeader('Location', $_ENV['BASE_PATH'] . '/?redirected=1')->withStatus(302);
         } else {          
           $response->getBody()->write(json_encode($json_erro));
           return $response->withHeader('content-type', 'application/json');
         }
-
-        return $response;
       }
 
       if( !$this->guard->validateToken($name, $value) ) {
+        $response = new R();
         if ($request->getMethod() == 'GET') {
           return $response->withHeader('Location', $_ENV['BASE_PATH'] . '/?redirected=1')->withStatus(302);
         } else {          
@@ -42,6 +42,7 @@
           return $response->withHeader('content-type', 'application/json');
         }
       }
+
       return $response;
     }
   }
