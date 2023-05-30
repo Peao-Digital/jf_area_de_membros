@@ -1,10 +1,10 @@
 <?php
 
   namespace app\middlewares;
-  use Psr\Http\Message\ResponseInterface as Response;
+  use Psr\Http\Message\ResponseInterface;
   use Psr\Http\Message\ServerRequestInterface as Request;
   use Psr\Http\Server\RequestHandlerInterface as RequestHandler;
-  use Slim\Psr7\Response as R;
+  use Slim\Psr7\Response as Response;
 
   class CsrfMiddleware {
     private $guard = null;
@@ -13,8 +13,7 @@
     }
 
     public function __invoke(Request $request, RequestHandler $handler): Response {
-      $response = $handler->handle($request);
-
+      
       $method = $request->getMethod() == 'GET'? $request->getQueryParams(): $request->getParsedBody();
 
       $name = isset($method[$this->guard->getTokenNameKey()])? $method[$this->guard->getTokenNameKey()]: null;
@@ -24,25 +23,16 @@
       $json_erro = json_encode(['erro' => 'Acesso inválido!']);
 
       if($name == null || $value == null) {
-        $response = new R();
-        if ($request->getMethod() == 'GET') {
-          return $response->withHeader('Location', $_ENV['BASE_PATH'] . '/?redirected=1')->withStatus(302);
-        } else {          
-          $response->getBody()->write(json_encode($json_erro));
-          return $response->withHeader('content-type', 'application/json');
-        }
+        $response = new Response();
+        return $response->withHeader('Location', $_ENV['BASE_PATH'] . '/?redirected=1')->withStatus(302);
       }
 
       if( !$this->guard->validateToken($name, $value) ) {
-        $response = new R();
-        if ($request->getMethod() == 'GET') {
-          return $response->withHeader('Location', $_ENV['BASE_PATH'] . '/?redirected=1')->withStatus(302);
-        } else {          
-          $response->getBody()->write(json_encode($json_erro));
-          return $response->withHeader('content-type', 'application/json');
-        }
+        $response = new Response();
+        return $response->withHeader('Location', $_ENV['BASE_PATH'] . '/?redirected=1')->withStatus(302);
       }
 
+      $response = $handler->handle($request);
       return $response;
     }
   }
