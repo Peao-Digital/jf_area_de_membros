@@ -27,7 +27,7 @@
           WHERE (cliente.cpf = :CLIENTE OR cliente.cnpj = :CLIENTE)
         )
         SELECT DISTINCT item.produto_id, item.nome_produto, item.nome_produto_adquirido,
-          (CASE WHEN liberados.produto_id IS NULL THEN 'N' ELSE 'S' END) LIBERADO
+          (CASE WHEN liberados.produto_id IS NULL THEN 'N' ELSE 'S' END) liberado
         FROM ticto_item item
         LEFT JOIN liberados on (liberados.produto_id = item.produto_id)
         ORDER BY 1";
