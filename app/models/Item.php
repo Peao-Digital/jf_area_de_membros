@@ -21,7 +21,7 @@
       $this->produto_id             = $json["product_id"];
       $this->nome_produto_adquirido = $json["offer_name"];
       $this->oferta_id              = $json["offer_id"];
-      $this->prazo_reembolso        = $json["refund_deadline"];
+      $this->prazo_reembolso        = $json["refund_deadline"]??null;
       $this->cupom_id               = $json["coupon_id"];
       $this->quantidade             = $json["quantity"];
       $this->preco_unidade_oferta   = $json["amount"];

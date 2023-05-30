@@ -20,8 +20,6 @@
       $value = isset($method[$this->guard->getTokenValueKey()])? $method[$this->guard->getTokenValueKey()]: null;
       $value = $value == null? $value:str_replace(' ', '+', $value);
 
-      $json_erro = json_encode(['erro' => 'Acesso inválido!']);
-
       if($name == null || $value == null) {
         $response = new Response();
         return $response->withHeader('Location', $_ENV['BASE_PATH'] . '/?redirected=1')->withStatus(302);

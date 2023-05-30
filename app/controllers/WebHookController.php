@@ -23,6 +23,7 @@
           $this->log->descricao = 'Token não encontrado!';
           $this->log->erro = json_encode($json);
           $this->log->salvar();
+          return $response->withStatus(403);
         }
       }
       
