@@ -3,113 +3,77 @@
 
   class Cliente extends ModeloGenerico {
     public $id = null;
-    public $ordem_id = null;
-    public $cpf = null;
-    public $cnpj = null;
-    public $tipo = null;
+    public $documento = null;
+    public $tipo_documento = null;
     public $nome = null;
-    public $email = null;
-    public $estrangeiro = null;
-
-    public $ddd = null;
-    public $ddi = null;
     public $telefone = null;
 
     public $endereco = null;
     public $endereco_numero = null;
-    public $endereco_complemento = null;
     public $bairro = null;
     public $cidade = null;
     public $estado = null;
     public $cep = null;
 
-    protected function alimentar_modelo_json($json) {
-      $this->cpf = $json["cpf"];
-      $this->cnpj = $json["cnpj"];
-      $this->nome = $json["name"];
-      $this->tipo = $json["type"];
-      $this->email = $json["email"];
-      $this->estrangeiro = $json["is_foreign"]? 'S':'N';
+    protected function alimentar_modelo_json($obj) {
+      if(isset($obj->customer->phone)) {
+        $this->telefone = $obj->customer->phone;
+      } else if(isset($obj->customer->cellphone)) {
+        $this->telefone = $obj->customer->cellphone;
+      }
+      
+      $this->nome            = $obj->customer->name;
+      $this->documento       = $obj->customer->doc;
+      $this->tipo_documento  = $obj->customer->doc_type;
 
-      $this->ddd = $json['phone']["ddd"];
-      $this->ddi = $json['phone']["ddi"];
-      $this->telefone = $json['phone']["number"];
-
-      $this->endereco = $json['address']["street"];
-      $this->endereco_numero = $json['address']["street_number"];
-      $this->endereco_complemento = $json['address']["complement"];
-      $this->bairro = $json['address']["neighborhood"];
-      $this->cidade = $json['address']["city"];
-      $this->estado = $json['address']["state"];
-      $this->cep = $json['address']["zip_code"];
+      $this->cep             = $obj->address->zipcode;
+      $this->endereco        = $obj->address->address;
+      $this->endereco_numero = $obj->address->number;
+      $this->bairro          = $obj->address->neighborhood;
+      $this->cidade          = $obj->address->city;
+      $this->estado          = $obj->address->state;
     }
 
     private function existe() {
-      //Nova transação
-      $obj = new Cliente();
-      $sql = 
-       "SELECT id FROM ticto_cliente 
-        WHERE tipo = :TIPO 
-          AND (cpf = :CPF OR cnpj = :CNPJ)";
-
-      $args = [
-        ':TIPO' => $this->tipo, ':CPF' => $this->cpf, ':CNPJ' => $this->cnpj
-      ];
-
-      $res = $obj->db->query($sql, $args);
-      return empty($res)? null: $res[0]['id'];
-    }
-
-    private function cadastrar_atualizar_cliente($commit = true) {
-      $this->id = $this->existe();
-      $args = [
-        ':NOME' => $this->nome, ':EMAIL' => $this->email, ':ESTRANGEIRO' => $this->estrangeiro, 
-        ':DDD' => $this->ddd, ':DDI' => $this->ddi, ':TELEFONE' => $this->telefone,
-        ':ENDERECO' => $this->endereco, ':ENDERECO_NUMERO' => $this->endereco_numero,
-        ':ENDERECO_COMPLEMENTO' => $this->endereco_complemento, ':BAIRRO' => $this->bairro,
-        ':CIDADE' => $this->cidade, ':ESTADO' => $this->estado, ':CEP' => $this->cep
-      ];
-
-      if($this->id == null) {
-        $sql = 
-          "INSERT INTO ticto_cliente (cpf, cnpj, nome, tipo, email, estrangeiro, ddd, ddi, telefone, endereco, 
-           endereco_numero, endereco_complemento, bairro, cidade, estado, cep) 
-           VALUES (:CPF, :CNPJ, :NOME, :TIPO, :EMAIL, :ESTRANGEIRO, :DDD, :DDI, :TELEFONE, :ENDERECO, 
-           :ENDERECO_NUMERO, :ENDERECO_COMPLEMENTO, :BAIRRO, :CIDADE, :ESTADO, :CEP)";
-        
-        $args[':CPF'] = $this->cpf;
-        $args[':CNPJ'] = $this->cnpj;
-        $args[':TIPO'] = $this->tipo;
-      } else {
-        $sql = 
-          "UPDATE ticto_cliente SET nome = :NOME, email = :EMAIL, estrangeiro = :ESTRANGEIRO,
-             ddd = :DDD, ddi = :DDI, telefone = :TELEFONE, endereco = :ENDERECO, endereco_numero = :ENDERECO_NUMERO,
-             endereco_complemento = :ENDERECO_COMPLEMENTO, bairro = :BAIRRO, cidade = :CIDADE, estado = :ESTADO, cep = :CEP
-           WHERE ID = :ID";
-        
-        $args[':ID'] = $this->id;
-      }
-
-      $this->db->non_query($sql, $args, $commit);
-      if ($this->id == null) {
-        $this->id = $this->db->get_last_id();
+      $cliente = new Cliente();
+      $sql = "SELECT id FROM api_cliente WHERE documento = :DOCUMENTO";
+      $busca = $cliente->db->query($sql, [':DOCUMENTO' => $this->documento]);
+      
+      if (!empty($busca)) {
+        $this->id = $busca[0]['id'];
       }
     }
 
     public function salvar($commit = true) {
-      $this->cadastrar_atualizar_cliente(false);
-
-      //Gravando vinculo de ordem e cliente
-      $sql = 
-        "INSERT INTO ticto_cliente_ordem (cliente_id, ordem_id) 
-         VALUES (:CLIENTE_ID, :ORDEM_ID)";
-        
+      $this->existe();
       $args = [
-        ':CLIENTE_ID' => $this->id, ':ORDEM_ID' => $this->ordem_id
+        ':NOME' => $this->nome, ':TELEFONE' => $this->telefone,
+        ':CEP' => $this->cep, ':ENDERECO' => $this->endereco,
+        ':END_NUMERO' => $this->endereco_numero, ':BAIRRO' => $this->bairro,
+        ':CIDADE' => $this->cidade, ':ESTADO' => $this->estado,
       ];
 
+      if ($this->id == null) {
+        $sql = 
+          "INSERT INTO api_cliente (nome, documento, tipo_documento, telefone, cep,
+            endereco, endereco_numero, bairro, cidade, estado) 
+          VALUES (:NOME, :DOCUMENTO, :TIPO_DOCUMENTO, :TELEFONE, :CEP, :ENDERECO, :END_NUMERO,
+           :BAIRRO, :CIDADE, :ESTADO)";
+
+        $args[':DOCUMENTO'] = $this->documento;
+        $args[':TIPO_DOCUMENTO'] = $this->tipo_documento;
+      } else {
+        $sql = "UPDATE api_cliente SET nome = :NOME, telefone = :TELEFONE, cep = :CEP,
+          endereco = :ENDERECO, endereco_numero = :END_NUMERO, bairro = :BAIRRO,
+          cidade = :CIDADE, estado = :ESTADO
+         WHERE id = :ID";
+        $args[':ID'] = $this->id;
+      }
+
       $this->db->non_query($sql, $args, $commit);
-      return $this->db->get_rows(true) == 2;
+      $this->id = $this->id??$this->db->get_last_id();
+
+      return $this->db->get_rows(true) == 1;
     }
 
   }

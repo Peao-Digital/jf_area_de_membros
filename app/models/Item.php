@@ -3,50 +3,53 @@
   namespace app\models;
 
   class Item extends ModeloGenerico {
-    public $ordem_id = null;
-    public $nome_produto = null;
-    public $produto_id = null;
-    public $nome_produto_adquirido = null;
-    public $oferta_id = null;
-    public $prazo_reembolso = null;
-    public $cupom_id = null;
-    public $quantidade_itens = null;
-    public $preco_unidade_oferta = null;
-    public $membro_id = null;
-    public $membro_classe_id = null;
-    public $dias_acesso_membros = null;
+    public $id = null;
+    public $codigo_item = null;
+    public $nome = null;
+    public $descricao = null;
+    public $tipo = null;
+    public $tipo_descricao = null;
+    public $imagem = null;
 
-    protected function alimentar_modelo_json($json) {
-      $this->nome_produto           = $json["product_name"];
-      $this->produto_id             = $json["product_id"];
-      $this->nome_produto_adquirido = $json["offer_name"];
-      $this->oferta_id              = $json["offer_id"];
-      $this->prazo_reembolso        = $json["refund_deadline"]??null;
-      $this->cupom_id               = $json["coupon_id"];
-      $this->quantidade             = $json["quantity"];
-      $this->preco_unidade_oferta   = $json["amount"];
-      $this->membro_id              = $json["members_portal_id"];
-      $this->membro_classe_id       = $json["members_classroom_id"];
-      $this->dias_acesso_membros    = $json["days_of_access"];
+    protected function alimentar_modelo_json($obj) {
+      $this->codigo_item    = $obj->code;
+      $this->nome           = $obj->name??null;
+      $this->descricao      = $obj->description??null;
+      $this->tipo           = $obj->type??null;
+      $this->tipo_descricao = $obj->type_text??null;
+      $this->imagem         = $obj->image??null;
+    }
+
+    private function existe() {
+      $item = new Item();
+      $sql = "SELECT id FROM api_item WHERE codigo_item = :CODIGO_ITEM";
+      $busca = $item->db->query($sql, [':CODIGO_ITEM' => $this->codigo_item]);
+      
+      if (!empty($busca)) {
+        $this->id = $busca[0]['id'];
+      }
     }
     
     public function salvar($commit = true) {
-      $sql = 
-        "INSERT INTO ticto_item (ordem_id, nome_produto, produto_id, nome_produto_adquirido,oferta_id,prazo_reembolso,
-          cupom_id,quantidade,preco_unidade_oferta, membro_id, membro_classe_id,dias_acesso_membros)
-         VALUES (:ORDEM_ID, :NOME_PRODUTO, :PRODUTO_ID, :NOME_PRODUTO_ADQUIRIDO, :OFERTA_ID, :PRAZO_REEMBOLSO,
-          :CUPOM_ID, :QUANTIDADE, :PRECO_UNIDADE_OFERTA, :MEMBRO_ID, :MEMBRO_CLASSE_ID, :DIAS_ACESSO_MEMBROS)";
-      
+      $this->existe();
       $args = [
-        ':ORDEM_ID' => $this->ordem_id, ':NOME_PRODUTO' => $this->nome_produto, ':PRODUTO_ID' => $this->produto_id, 
-        ':NOME_PRODUTO_ADQUIRIDO' => $this->nome_produto_adquirido, ':OFERTA_ID' => $this->oferta_id, 
-        ':PRAZO_REEMBOLSO' => $this->prazo_reembolso, ':CUPOM_ID' => $this->cupom_id, ':QUANTIDADE' => $this->quantidade, 
-        ':PRECO_UNIDADE_OFERTA' => $this->preco_unidade_oferta, ':MEMBRO_ID' => $this->membro_id, 
-        ':MEMBRO_CLASSE_ID' => $this->membro_classe_id, ':DIAS_ACESSO_MEMBROS' => $this->dias_acesso_membros
+        ':NOME' => $this->nome, ':DESCRICAO' => $this->descricao, ':IMAGEM' => $this->imagem,
+        ':TIPO' => $this->tipo, ':TIPO_DESCRICAO' => $this->tipo_descricao
       ];
 
+      if ($this->id == null) {
+        $sql = 
+          "INSERT INTO api_item (codigo_item, nome, descricao, imagem, tipo, tipo_descricao) 
+          VALUES (:CODIGO_ITEM, :NOME, :DESCRICAO, :IMAGEM, :TIPO, :TIPO_DESCRICAO)";
+        $args[':CODIGO_ITEM'] = $this->codigo_item;
+      } else {
+        $sql = "UPDATE API_ITEM SET nome = :NOME, descricao = :DESCRICAO, imagem = :IMAGEM,
+         tipo = :TIPO, tipo_descricao = :TIPO_DESCRICAO WHERE id = :ID";
+        $args[':ID'] = $this->id;
+      }
+
       $this->db->non_query($sql, $args, $commit);
-      $this->id = $this->db->get_last_id();
+      $this->id = $this->id??$this->db->get_last_id();
 
       return $this->db->get_rows(true) > 0;
     }

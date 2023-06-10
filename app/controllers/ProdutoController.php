@@ -19,17 +19,15 @@
       
       $sql = 
         "WITH liberados AS (
-          SELECT DISTINCT item.produto_id
-          FROM ticto_cliente cliente
-          INNER JOIN ticto_cliente_ordem cli_ordem on (cli_ordem.cliente_id = cliente.id)
-          INNER JOIN ticto_ordem ordem on (ordem.id = cli_ordem.ordem_id)
-            INNER JOIN ticto_item item on (item.ordem_id = ordem.id)
-          WHERE (cliente.cpf = :CLIENTE OR cliente.cnpj = :CLIENTE)
+          SELECT t_item.item_id
+          FROM api_transacao_item t_item
+          LEFT JOIN api_cliente cliente on (cliente.id = t_item.cliente_id)
+          WHERE REGEXP_REPLACE(cliente.documento, '[/.-]+', '') = REGEXP_REPLACE(:CLIENTE, '[/.-]+', '')
         )
-        SELECT DISTINCT item.produto_id, item.nome_produto, item.nome_produto_adquirido,
-          (CASE WHEN liberados.produto_id IS NULL THEN 'N' ELSE 'S' END) liberado
-        FROM ticto_item item
-        LEFT JOIN liberados on (liberados.produto_id = item.produto_id)
+        SELECT item.codigo_item produto_id, item.nome nome_produto, item.descricao, item.imagem,
+          (CASE WHEN liberados.item_id is not null THEN 'S' ELSE 'N' END) liberado
+        FROM api_item item
+        LEFT JOIN liberados on (liberados.item_id = item.id)
         ORDER BY 1";
       $dados = $db->query($sql, [':CLIENTE' => $cliente]);
 

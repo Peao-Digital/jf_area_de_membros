@@ -18,4 +18,4 @@ cache.properties
 composer.phar
 composer.lock
 .env
-instrucoes_ticto.txt
+instrucoes_api.txt
