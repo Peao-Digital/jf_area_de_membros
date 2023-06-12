@@ -1,7 +1,7 @@
 <?php
   use Slim\App;
   use app\middlewares\CsrfMiddleware;
-  use app\controllers\{HomeController, ProdutoController, ApiController, TesteController};
+  use app\controllers\{HomeController, ProdutoController, ApiController, LeitorPdfController};
 
   return function(App $app) use ($guard) {
     $app->get('/', function($request, $response, $args) use ($app, $guard) {
@@ -12,7 +12,7 @@
       return (new ProdutoController)->index($request, $response, $guard);
     })->add(new CsrfMiddleware($guard));
 
-    $app->get('/produtos/consultar', function($request, $response, $args) use ($app, $guard) {
+    $app->get('/produtos/consultar', function($request, $response, $args) use ($app) {
       return (new ProdutoController)->consultar($request, $response);
     })->add(new CsrfMiddleware($guard));
 
@@ -22,8 +22,12 @@
       return (new TesteController)->autenticar($request, $response);
     });
 
-    $app->get('/teste/dados', function($request, $response, $args) use ($app, $guard) {
-      return (new TesteController)->dados($request, $response);
-    });
+    $app->any('/leitor', function($request, $response, $args) use ($app, $guard) {
+      return (new LeitorPdfController)->index($request, $response, $guard);
+    })->add(new CsrfMiddleware($guard));
+
+    $app->get('/leitor/arquivo', function($request, $response, $args) use ($app) {
+      return (new LeitorPdfController)->arquivo($request, $response);
+    })->add(new CsrfMiddleware($guard));
 
   };

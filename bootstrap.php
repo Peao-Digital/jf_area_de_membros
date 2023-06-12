@@ -8,6 +8,7 @@
   use Slim\Psr7\Factory\ResponseFactory;
 
   define('ROOT', __DIR__);
+  define('PDF', __DIR__ . DIRECTORY_SEPARATOR . 'public' . DIRECTORY_SEPARATOR . 'pdf' . DIRECTORY_SEPARATOR);
 
   if(!file_exists(ROOT)){
     header("HTTP/1.0 404 Not Found");

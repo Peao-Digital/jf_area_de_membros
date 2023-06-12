@@ -18,10 +18,7 @@
     private $temp_itens = [];
     
     private $url_autenticacao = 'https://api.app.doppus.com/3.0/auth/';
-    private $url_dados = 'https://api.app.doppus.com/3.0/sales_test/';
-
-    #private $url_autenticacao = 'http://localhost/jf_area_de_membros/public/teste/autenticar'; //TESTE
-    #private $url_dados = 'http://localhost/jf_area_de_membros/public/teste/dados'; //TESTE
+    private $url_dados = 'https://api.app.doppus.com/3.0/sales/';
 
     public function __invoke(Request $request, Response $response, $args = []) {
       //Caso um periodo de datas não tenham sido informadas, utilizar o dia atual
