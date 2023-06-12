@@ -10,7 +10,7 @@
     private $database_type = null;
     private $fetch = PDO::FETCH_ASSOC;
     private $fetch_class = null;
-    private $in_transaction = false;
+    public $in_transaction = false;
     private $database_types = ['sqlite', 'sqlsrv', 'mssql', 'mysql', 'pg', 'ibm', 'dblib', 'firebird'];
 
     public function __construct($param_connection = [], $auto_connect = true) {

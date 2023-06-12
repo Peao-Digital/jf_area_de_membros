@@ -133,10 +133,12 @@
           }
         }
 
-        if ($ok) {
-          $db->commit();
-        } else{
-          $db->rollback();
+        if($db->in_transaction) {
+          if ($ok) {
+            $db->commit();
+          } else{
+            $db->rollback();
+          }
         }
 
         return $ok;
