@@ -127,10 +127,6 @@
           $ok = $this->salvar($db, $json);
           $pagina++;
 
-          //TESTES
-          if($pagina == 2) {
-            break;
-          }
         }
 
         if($db->in_transaction) {
