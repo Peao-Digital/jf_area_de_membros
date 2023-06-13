@@ -28,7 +28,11 @@
         1 => 'exemplo.pdf'
       ];
 
-      load_view('leitor_pdf', ['pdf' => $lista_pdf[$pdf]], $guard);
+      if(isset($lista_pdf[$pdf])) {
+        load_view('leitor_pdf', ['pdf' => $lista_pdf[$pdf]], $guard);
+      }
+
+      echo 'PDF não encontrado!';
     }
 
     /**

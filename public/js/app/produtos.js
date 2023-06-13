@@ -22,38 +22,53 @@ $(document).ready(function () {
     const csrfParams = `&csrf_name=${params[1]}&csrf_value=${params[2]}`;
     const url = `produtos/consultar?cliente=${params[0]}${csrfParams}`;
 
+    const screenWidth = $(window).width();
+
+    let device = "";
+
+    if (screenWidth >= 1200) {
+      device = 'desktop';
+    } else if (screenWidth >= 600) {
+      device = 'tablet';
+    } else {
+      device = 'mobile';
+    }
+
+
     fetch(url, { method: 'GET' })
       .then(response => response.json())
       .then(json => {
         json.forEach((val, i) => {
           let html = '';
 
+          
+
+
           if (val.liberado == 'S') {
             html = `
-              <form method="POST" action="leitor/arquivo">
+              <form method="POST" action="leitor">
                 <input type="hidden" name="pdf" value="${val.produto_id}">
                 <input type="hidden" class="valid" name="csrf_name" value="${params[1]}">
                 <input type="hidden" class="valid" name="csrf_value" value="${params[2]}">
 
-                <div class="card card-product mb-2">
-                  <div class="card-body"> 
-                    <div class="title-product">
-                      <h4>${val.nome_produto}</h4>
+                <button class="btn-product" type="submit">
+                  <div class="card card-product mb-2" style="background-image: url('img/${device}/${val.imagem}.png')">
+                    <div class="card-body">
                     </div>
                   </div>
-                </div>
-
-                <button type"submit">teste</button>
+                </button>
               </form>`;
           } else {
             html = `
-              <div class="card card-product mb-2">
-                <div class="card-body"> 
-                  <div class="title-product">
-                    <h4>${val.nome_produto}</h4>
-                  </div>
+
+            <a class="btn-product" href="wa.me/54991102959">
+              <div class="card card-product mb-2" style="background-image: url('img/${val.imagem}.png')">
+                <div class="card-body">
+                  <i class="fa-solid fa-lock"></i>
                 </div>
-              </div>`;
+                <div class="blur-effect"></div>
+              </div>
+            </a>`;
           }
 
           divProducts.append(html);
