@@ -29,8 +29,9 @@
         FROM api_item item
         LEFT JOIN liberados on (liberados.item_id = item.id)
         ORDER BY 1";
-      $dados = $db->query($sql, [':CLIENTE' => $cliente]);
 
+      $dados = $db->query($sql, [':CLIENTE' => $cliente]);
+      
       $response->getBody()->write(json_encode($dados));
       return $response
         ->withHeader('content-type', 'application/json');

@@ -1,0 +1,46 @@
+/* Align */
+
+.row-products {
+  display: flex;
+  text-align: center;
+  width: 100%;
+  flex-direction: column;
+}
+
+/* Cards */
+
+
+.card-product {
+  width: 100%;
+  background-color: rgb(15, 27, 55);
+}
+
+.card-product .card-body {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* Textos */
+
+.title-product {
+  color: white;
+}
+
+/* Imagens */
+
+.logo-img img {
+  width: 250px;
+  padding: 0%;
+}
+
+.logo-product img {
+  width: 200px;
+  padding: 0%;
+}
+
+.logo-empresa img {
+  width: 150px
+}
+
+

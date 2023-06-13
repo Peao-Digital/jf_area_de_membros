@@ -43,6 +43,6 @@
       header('Accept-Ranges: bytes');
       @readfile(PDF . $pdf);
 
-      return $reponse;
+      return $response;
     }
   }

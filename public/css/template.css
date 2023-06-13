@@ -1,111 +1,16 @@
 html,
 body {
   height: 100%;
-  background: rgb(13, 13, 13);
-  background: -moz-linear-gradient(116deg, rgba(13, 13, 13, 1) 0%, rgba(17, 17, 17, 1) 50%, rgba(42, 42, 42, 1) 100%);
-  background: -webkit-linear-gradient(116deg, rgba(13, 13, 13, 1) 0%, rgba(17, 17, 17, 1) 50%, rgba(42, 42, 42, 1) 100%);
-  background: linear-gradient(116deg, rgba(13, 13, 13, 1) 0%, rgba(17, 17, 17, 1) 50%, rgba(42, 42, 42, 1) 100%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0d0d0d", endColorstr="#2a2a2a", GradientType=1);
+  background: rgb(0, 30, 117);
+  background: -moz-linear-gradient(86deg, rgba(0, 30, 117, 1) 0%, rgba(0, 22, 87, 1) 88%);
+  background: -webkit-linear-gradient(86deg, rgba(0, 30, 117, 1) 0%, rgba(0, 22, 87, 1) 88%);
+  background: linear-gradient(86deg, rgba(0, 30, 117, 1) 0%, rgba(0, 22, 87, 1) 88%);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#001e75", endColorstr="#001657", GradientType=1);
   font-family: 'Roboto', sans-serif;
 }
 
-/* Container */
-
-#container {
-  display: flex;
-  align-content: center;
-  justify-content: center;
-}
-
-/* Imagens */
-
-.img-logo {
-  margin-bottom: 10%;
-}
-
-/* Textos */
-
-.title h1 {
-  text-align: center;
-  color: white;
-  font-weight: bold;
-  padding: 10%;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 30px;
-}
-
-.subtitle p {
-  color: rgb(189, 189, 189);
-}
-
-.link {
-  text-decoration: none;
-}
-
-.acessar {
-  width: 100%;
-  font-weight: bold;
-}
-
-.radiocheck .form-check label {
-  color: white;
-  font-weight: bold;
-}
-
-/* Formulario */
-
-.page {
+section#container {
+  height: 100%;
   display: flex;
   justify-content: center;
-  text-align: center;
-}
-
-.card-login {
-  width: 40%;
-  padding: 5%;
-  background-color: rgba(255, 255, 255, 0.03) !important;
-}
-
-/* media query */
-
-@media screen and (max-width: 900px) {
-  .card-login {
-    width: 50%;
-    background-color: rgba(255, 255, 255, 0.03) !important;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .card-login {
-    width: 85%;
-    background-color: rgba(255, 255, 255, 0.03) !important;
-  }
-}
-
-/* Produtos*/
-
-
-.card-produto {
-  padding: 5%;
-  color: white;
-  background-color: rgba(255, 255, 255, 0.03) !important;
-}
-
-.card-produto button {
-  font-weight: bold;
-}
-
-/* Align */
-
-.right {
-  text-align: right;
-}
-
-.left {
-  text-align: left;
-}
-
-.center {
-  text-align: center;
 }

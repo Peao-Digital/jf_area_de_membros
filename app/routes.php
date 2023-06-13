@@ -18,10 +18,6 @@
 
     $app->any('/api', ApiController::class);
 
-    $app->post('/teste/autenticar', function($request, $response, $args) use ($app, $guard) {
-      return (new TesteController)->autenticar($request, $response);
-    });
-
     $app->any('/leitor', function($request, $response, $args) use ($app, $guard) {
       return (new LeitorPdfController)->index($request, $response, $guard);
     })->add(new CsrfMiddleware($guard));

@@ -1,0 +1,146 @@
+/* align*/
+
+.row-login {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
+.suporte {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+/* Imagens */
+
+.logo-img img {
+  width: 250px;
+  padding: 0%;
+}
+
+.logo-empresa img {
+  width: 150px
+}
+
+
+/* textos */
+
+.account-title {
+  color: white;
+}
+
+.subtitle p {
+  color: #c1c1c1;
+}
+
+.subtitle p {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.card-login .card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* card */
+
+.card-login {
+  width: 350px;
+  min-height: 280px;
+  background-color: rgb(15, 27, 55);
+  box-shadow: 0px 0px 5px 1px #595959;
+  border-radius: 15px;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+/* Button */
+
+.btn-acessar {
+  width: 100%;
+  margin-top: 5%;
+  color: black;
+  font-weight: bold;
+  border-radius: 50px;
+  background-color: #ffda00 !important;
+}
+
+.btn-acessar:hover,
+.btn-acessar:focus,
+.btn-acessar:active {
+  background-color: #ffed81 !important;
+}
+
+.btn-suporte {
+  width: 250px;
+  padding: 5px;
+  text-decoration: none;
+  color: white;
+  background-color: #003d73;
+  box-shadow: 0px 0px 2px 0px #b1b1b1;
+  border-radius: 10px;
+}
+
+.btn-suporte .suporte-duvidas {
+  font-weight: bold;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+}
+
+.btn-suporte .suporte-clique {
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
+}
+
+a.btn-suporte:hover {
+  color: white;
+  background-color: #032a4d;
+}
+
+@media screen and (max-width:400px) {
+  .card-login {
+    width: 340px;
+    min-height: 280px;
+    background-color: rgb(15, 27, 55);
+    box-shadow: 0px 0px 5px 1px #595959;
+    border-radius: 15px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+}
+
+@media screen and (min-width: 450px) and (max-width:900px) {
+  .card-login {
+    width: 450px;
+    min-height: 280px;
+    background-color: rgb(15, 27, 55);
+    box-shadow: 0px 0px 5px 1px #595959;
+    border-radius: 15px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .card-login {
+    width: 450px;
+    min-height: 280px;
+    background-color: rgb(15, 27, 55);
+    box-shadow: 0px 0px 5px 1px #595959;
+    border-radius: 15px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+
+  .logo-img img {
+    width: 350px;
+    padding: 0%;
+  }
+  
+}

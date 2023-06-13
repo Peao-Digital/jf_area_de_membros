@@ -1,34 +1,43 @@
 <?php $this->layout('template', ['title' => 'Home', 'guard' => isset($guard) ? $guard : null]) ?>
 
-<div class="row page">
-  <div class="col-lg-12 title">
-    <h1>Faça login para ter acesso ao Mapa da Riqueza</h1>
-  </div>
-  <div class="card card-login col-xs-10 col-sm-10 col-md-8 col-lg-6 col-xl-6">
-    <div class="card-body">
-      <img class="img-logo" src="<?= $_ENV['BASE_PATH'] ?>/img/Logo.png">
-      <form id="formulario">
-        <div class="form-group mb-4">
-          <div class="radiocheck mb-2">
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" value="cpfCheck" type="radio" name="cnpjfCheck" id="cpfCheck" checked>
-              <label class="form-check-label" for="cpfCheck">CPF</label>
-            </div>
-            <div class="form-check form-check-inline">
-              <input class="form-check-input" value="cnpjCheck" type="radio" name="cnpjfCheck" id="cnpjCheck">
-              <label class="form-check-label" for="cnpjCheck">CNPJ</label>
-            </div>
-          </div>
+<div class="row row-login">
 
-          <input type="text" class="form-control" placeholder="Informe o CPF" id="cnpjf" />
+  <div class="logo-img mt-4 mb-4">
+    <img src="<?= $_ENV['BASE_PATH'] ?>/img/logo_mapa.png">
+  </div>
+
+  <div class="account-title mt-4 mb-4">
+    <h4>Acesse a sua conta</h4>
+  </div>
+
+  <div class="card card-login">
+    <div class="card-body">
+
+      <div class="subtitle mb-4">
+        <p>PREENCHA SEUS DADOS</p>
+      </div>
+
+      <form id="formulario">
+        <div class="form-group">
+          <input type="text" class="form-control" placeholder="Digite aqui seu CPF ou CNPJ" id="cnpjf" />
+          <div class="invalid-feedback">CPF ou CNPJ Inválido</div>
+          <Button class="btn btn-acessar" type="submit">ACESSAR AGORA</Button>
         </div>
-        <Button class="btn btn-success acessar" type="submit">ACESSAR</Button>
       </form>
     </div>
   </div>
-  <div class="col-lg-12 subtitle mt-2">
-    <p>Está com dificuldade de acessar ? <a class="link" href="#">Clique aqui</a> e fale conosco.</p>
+
+  <div class="suporte mt-4">
+    <a class="btn-suporte" href="#">
+      <p class="suporte-duvidas">FICOU COM DÚVIDAS</p>
+      <p class="suporte-clique">Clique aqui e fale com o suporte</p>
+    </a>
+  </div>
+
+  <div class="mt-4 mb-4 logo-empresa">
+    <img src="<?= $_ENV['BASE_PATH'] ?>/img/logo_jf.png">
   </div>
 </div>
 
+<script src="<?= $_ENV['BASE_PATH'] ?>/js/app/validaCNPJF.js"></script>
 <script src="<?= $_ENV['BASE_PATH'] ?>/js/app/index.js"></script>
