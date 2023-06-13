@@ -28,7 +28,7 @@
         1 => 'exemplo.pdf'
       ];
 
-      load_view('leitor_pdf', ['pdf' => $lista_pdf[$pdf]], $guard);
+      load_view('leitor', ['pdf' => $lista_pdf[$pdf]], $guard);
     }
 
     /**
