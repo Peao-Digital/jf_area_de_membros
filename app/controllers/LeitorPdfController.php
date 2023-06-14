@@ -29,7 +29,7 @@
       if(isset($lista_pdf[$pdf])) {
         load_view('leitor', ['pdf' => $lista_pdf[$pdf]], $guard);
       } else {
-        echo 'PDF não encontrado!';
+        load_view('pdf_nao_encontrado');
       }
       
     }
