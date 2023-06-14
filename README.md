@@ -26,6 +26,7 @@
           </ul>
         </li>
         <li>Executar o arquivo db.sql na base de dados escolhida</li>
+        <li>Adicionar a relação entre codigo do produto e pdf no arquivo pdf.php na raiz do projeto</li>
       </ul>
       <h3><b>Fluxo do programa</b></h3>
       <ul>

@@ -24,15 +24,14 @@
      * Vinculo de codigo do PDF com o arquivo (public/pdf)
      */
     private function visualizar($pdf, $guard) {
-      $lista_pdf = [
-        1 => 'exemplo.pdf'
-      ];
+      $lista_pdf = require ROOT . DIRECTORY_SEPARATOR . 'pdf.php';
 
       if(isset($lista_pdf[$pdf])) {
         load_view('leitor', ['pdf' => $lista_pdf[$pdf]], $guard);
+      } else {
+        echo 'PDF não encontrado!';
       }
-
-      echo 'PDF não encontrado!';
+      
     }
 
     /**
