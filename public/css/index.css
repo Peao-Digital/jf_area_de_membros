@@ -72,6 +72,7 @@
 .btn-acessar:hover,
 .btn-acessar:focus,
 .btn-acessar:active {
+  color: black;
   background-color: #ffed81 !important;
 }
 

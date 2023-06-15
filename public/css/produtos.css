@@ -7,7 +7,33 @@
   flex-direction: column;
 }
 
+.modal-body {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.embed-responsive {
+  width: 400px;
+}
+
 /* Cards */
+
+.custom-modal {
+  color: #ffda00;
+  font-weight: bold;
+  background: rgb(0, 30, 117) !important;
+  background: -moz-linear-gradient(86deg, rgba(0, 30, 117, 1) 0%, rgba(0, 22, 87, 1) 88%) !important;
+  background: -webkit-linear-gradient(86deg, rgba(0, 30, 117, 1) 0%, rgba(0, 22, 87, 1) 88%) !important;
+  background: linear-gradient(86deg, rgba(0, 30, 117, 1) 0%, rgba(0, 22, 87, 1) 88%) !important;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#001e75", endColorstr="#001657", GradientType=1) !important;
+}
+
+.custom-modal .modal-header,
+.custom-modal .modal-footer {
+  border-color: #4f6dc5;
+}
 
 
 .card-product {
@@ -15,6 +41,7 @@
   height: 100%;
   background-size: cover;
   background-position: center;
+  border-radius: 5px;
 }
 
 .card-product .card-body {
@@ -25,6 +52,7 @@
   justify-content: space-between;
   flex-direction: row-reverse;
   cursor: pointer;
+  border-radius: 5px;
 }
 
 .card {
@@ -43,6 +71,7 @@
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px;
 }
 
 .fa-lock {
@@ -76,6 +105,25 @@
 
 /* Botões */
 
+btn-close{
+  color: #ffda00!important;
+}
+
+.closeButton {
+  margin-top: 5%;
+  color: black;
+  font-weight: bold;
+  border-radius: 50px;
+  background-color: #ffda00 !important;
+}
+
+.closeButton:hover,
+.closeButton:focus,
+.closeButton:active {
+  color: black;
+  background-color: #ffed81 !important;
+}
+
 .btn-product {
   display: inline-block;
   width: 350px;
@@ -85,6 +133,12 @@
   padding: 0;
   text-decoration: none;
   background: transparent;
+  border-radius: 5px;
+}
+
+.btn-product:hover {
+  background: black;
+  scale: 0.99;
 }
 
 @media screen and (min-width:600px) and (max-width:1200px) {
@@ -97,6 +151,7 @@
     padding: 0;
     text-decoration: none;
     background: transparent;
+    border-radius: 5px;
   }
 }
 
@@ -110,6 +165,7 @@
     padding: 0;
     text-decoration: none;
     background: transparent;
+    border-radius: 5px;
   }
 }
 
@@ -123,5 +179,6 @@
     padding: 0;
     text-decoration: none;
     background: transparent;
+    border-radius: 5px;
   }
 }
