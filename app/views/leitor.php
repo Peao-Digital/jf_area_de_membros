@@ -7,10 +7,10 @@
   <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/leitor.css?v=<?= time() ?>">
 
-  <script src="<?= $_ENV['BASE_PATH'] ?>/js/all.min.js"></script>
-  <script src="<?= $_ENV['BASE_PATH'] ?>/js/pdf.min.js"></script>
-  <script src="<?= $_ENV['BASE_PATH'] ?>/js/pdf.worker.min.js"></script>
-  <script src="<?= $_ENV['BASE_PATH'] ?>/js/bootstrap.min.js"></script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/lib/all.min.js"></script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/lib/pdf.min.js"></script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/lib/pdf.worker.min.js"></script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/lib/bootstrap.min.js"></script>
 </head>
 <body oncontextmenu='return false'>
 
