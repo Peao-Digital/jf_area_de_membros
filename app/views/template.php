@@ -18,7 +18,6 @@
   <script src="<?= $_ENV['BASE_PATH'] ?>/js/bootstrap.min.js"></script>
   <script src="<?= $_ENV['BASE_PATH'] ?>/js/all.min.js"></script>
 
-
   <title><?= $this->e($title) ?></title>
 </head>
 
@@ -32,6 +31,9 @@
     <?php endif; ?>
 
   </section>
+
+  <!-- Mascara -->
+  <div id="mascara"> </div>
 
 </body>
 

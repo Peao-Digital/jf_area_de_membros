@@ -14,3 +14,15 @@ section#container {
   display: flex;
   justify-content: center;
 }
+
+/* CSS DA DIV MASCARA */
+#mascara{
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  z-index: 9000;
+  height: 100%;
+  width: 100%;
+  background: url(../img/loading.gif) center center no-repeat rgb(0 0 0 / 75%);
+  display: none;
+}
