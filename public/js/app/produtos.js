@@ -18,12 +18,12 @@ $(document).ready(function () {
 
   const ObterItem = (productId) => {
     const items = {
-      '47214': { 'tipo': 'pdf', 'aquivo': 'exemplo.pdf'},
-      '76587': { 'tipo': 'pdf', 'aquivo': 'exemplo.pdf'},
-      '76204': { 'tipo': 'pdf', 'aquivo': 'exemplo.pdf' },
+      '47214': { tipo: 'pdf', file: 'exemplo.pdf'},
+      '76587': { tipo: 'pdf', file: 'exemplo.pdf'},
+      '76204': { tipo: 'pdf', file: 'exemplo.pdf' },
       '36673': {
-        'tipo': 'video',
-        'videos': [
+        tipo: 'video',
+        videos: [
           { nome: 'INTRO CURSO', link: 'https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=9481606c-eb6b-4886-a6f3-aa3afd61961f' },
           { nome: 'Aula 1.1 - Trocando de conta', link: 'https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=9a8b3ee7-32dc-406f-ace7-5b737e3743ea' },
           { nome: 'Aula 1.2 - Extrato e uso do Meu INSS', link: 'https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=65c7c03b-8de5-4a30-9975-a135dab28111' },
@@ -59,7 +59,7 @@ $(document).ready(function () {
         </a>`;
     } else {
       return `
-        <a class="btn-product" href="https://api.whatsapp.com/send/?phone=54991102959&">
+        <a class="btn-product" href="https://api.whatsapp.com/send/?phone=5491025477&">
           <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
@@ -70,11 +70,11 @@ $(document).ready(function () {
     }
   };
 
-  const CardPDF = (device, productId, isLiberado, csrfName, csrfValue) => {
+  const CardPDF = (device, productId, file, isLiberado, csrfName, csrfValue) => {
     if (isLiberado) {
       return `
         <form method="POST" action="leitor">
-          <input type="hidden" name="pdf" value="${productId}">
+          <input type="hidden" name="pdf" value="${file}">
           <input type="hidden" class="valid" name="csrf_name" value="${csrfName}">
           <input type="hidden" class="valid" name="csrf_value" value="${csrfValue}">
           <button class="btn-product" type="submit">
@@ -85,7 +85,7 @@ $(document).ready(function () {
         </form>`;
     } else {
       return `
-        <a class="btn-product" href="https://api.whatsapp.com/send/?phone=54991102959&">
+        <a class="btn-product" href="https://api.whatsapp.com/send/?phone=5491025477&">
           <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
@@ -132,7 +132,7 @@ $(document).ready(function () {
           if (item.tipo === 'video') {
             html = CardVideo(device, val.produto_id, val.nome_produto, isLiberado);
           } else {
-            html = CardPDF(device, val.produto_id, isLiberado, params[1], params[2]);
+            html = CardPDF(device, val.produto_id, item.file, isLiberado, params[1], params[2]);
           }
 
           divProducts.append(html);
