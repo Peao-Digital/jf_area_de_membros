@@ -21,17 +21,14 @@
     }
 
     /** 
-     * Vinculo de codigo do PDF com o arquivo (public/pdf)
+     * Página do viewer
      */
     private function visualizar($pdf, $guard) {
-      $lista_pdf = require ROOT . DIRECTORY_SEPARATOR . 'pdf.php';
-
-      if(isset($lista_pdf[$pdf])) {
-        load_view('leitor', ['pdf' => $lista_pdf[$pdf]], $guard);
+      if(file_exists(PDF . $pdf)) {
+        load_view('leitor', ['pdf' => $pdf], $guard);
       } else {
         load_view('pdf_nao_encontrado');
       }
-      
     }
 
     /**
