@@ -13,10 +13,10 @@
   <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/template.css">
   <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/index.css">
 
-  <script src="<?= $_ENV['BASE_PATH'] ?>/js/jquery.min.js"></script>
-  <script src="<?= $_ENV['BASE_PATH'] ?>/js/jquery.mask.js"></script>
-  <script src="<?= $_ENV['BASE_PATH'] ?>/js/bootstrap.min.js"></script>
-  <script src="<?= $_ENV['BASE_PATH'] ?>/js/all.min.js"></script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/lib/jquery.min.js"></script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/lib/jquery.mask.js"></script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/lib/bootstrap.min.js"></script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/lib/all.min.js"></script>
 
 
   <title><?= $this->e($title) ?></title>
@@ -35,6 +35,9 @@
     <?php endif; ?>
 
   </section>
+
+  <!-- Mascara -->
+  <div id="mascara"> </div>
 
 </body>
 
