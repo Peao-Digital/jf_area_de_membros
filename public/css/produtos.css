@@ -9,7 +9,7 @@
 
 .modal-body {
   display: flex;
-  flex-direction: row-reverse;
+  flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -105,8 +105,9 @@
 
 /* Botões */
 
-btn-close{
-  color: #ffda00!important;
+.btn-close {
+  opacity: 1;
+  background-color: #ffda00 !important;
 }
 
 .closeButton {

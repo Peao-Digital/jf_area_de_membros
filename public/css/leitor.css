@@ -1,0 +1,30 @@
+#pdf-viewer {
+  background: rgba(0, 0, 0, 0.1);
+  overflow: auto;
+}
+
+.pdf-page-canvas {
+  display: block;
+  margin: 5px auto;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.btn-back {
+  display: inline-block !important;
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: 2% 5% 0% 0%;
+  font-weight: bold;
+  background-color: #ffc107 !important;
+}
+
+.btn-back:hover {
+  display: inline-block;
+  position: fixed;
+  right: 0;
+  top: 0;
+  margin: 2% 5% 0% 0%;
+  font-weight: bold;
+  background-color: #ffc107 !important;
+}

@@ -1,33 +1,35 @@
 <html>
-  <head>
-    <title><?= $pdf?></title>
 
-    <style>
-      #pdf-viewer {
-        background: rgba(0, 0, 0, 0.1);
-        overflow: auto;
-      }
-      
-      .pdf-page-canvas {
-        display: block;
-        margin: 5px auto;
-        border: 1px solid rgba(0, 0, 0, 0.2);
-      }
-    </style>
-    
-    <script src="<?= $_ENV['BASE_PATH'] ?>/js/pdf.min.js"></script>
-    <script src="<?= $_ENV['BASE_PATH'] ?>/js/pdf.worker.min.js"></script>
-  </head>
-  <body oncontextmenu='return false'>
+<head>
+  <title><?= $pdf ?></title>
 
-    <?php if (isset($guard)) : ?>
-      <input type="hidden" class="valid" id="pdf" value="<?=$pdf ?>">
-      <input type="hidden" class="valid" id="<?= $guard->getTokenNameKey() ?>" value="<?= $guard->getTokenName() ?>">
-      <input type="hidden" class="valid" id="<?= $guard->getTokenValueKey() ?>" value="<?= $guard->getTokenValue() ?>">
-    <?php endif; ?>
+  <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/leitor.css?v=<?= time() ?>">
 
-    <div id="pdf-viewer"></div>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/all.min.js"></script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/pdf.min.js"></script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/pdf.worker.min.js"></script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/bootstrap.min.js"></script>
+</head>
+<body oncontextmenu='return false'>
 
-    <script src="<?= $_ENV['BASE_PATH'] ?>/js/app/leitor.js"></script>
-  </body>
+  <?php if (isset($guard)) : ?>
+    <input type="hidden" class="valid" id="pdf" value="<?= $pdf ?>">
+    <input type="hidden" class="valid" id="<?= $guard->getTokenNameKey() ?>" value="<?= $guard->getTokenName() ?>">
+    <input type="hidden" class="valid" id="<?= $guard->getTokenValueKey() ?>" value="<?= $guard->getTokenValue() ?>">
+  <?php endif; ?>
+
+  <div id="pdf-viewer">
+    <button onclick="goBack()" class="btn btn-back">Voltar</button>
+  </div>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+  <script src="<?= $_ENV['BASE_PATH'] ?>/js/app/leitor.js?v=<?= time() ?>"></script>
+</body>
+
 </html>

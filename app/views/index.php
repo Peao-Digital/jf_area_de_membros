@@ -1,4 +1,4 @@
-<?php $this->layout('template', ['title' => 'Home', 'guard' => isset($guard) ? $guard : null]) ?>
+<?php $this->layout('template', ['title' => 'João Financeira', 'guard' => isset($guard) ? $guard : null]) ?>
 
 <div class="row row-login">
 
@@ -28,7 +28,7 @@
   </div>
 
   <div class="suporte mt-4">
-    <a class="btn-suporte" href="#">
+    <a class="btn-suporte" href="https://api.whatsapp.com/send/?phone=5491025477&">
       <p class="suporte-duvidas">FICOU COM DÚVIDAS</p>
       <p class="suporte-clique">Clique aqui e fale com o suporte</p>
     </a>
@@ -39,5 +39,5 @@
   </div>
 </div>
 
-<script src="<?= $_ENV['BASE_PATH'] ?>/js/app/validaCNPJF.js"></script>
-<script src="<?= $_ENV['BASE_PATH'] ?>/js/app/index.js"></script>
+<script src="<?= $_ENV['BASE_PATH'] ?>/js/app/validaCNPJF.js?v=<?= time() ?>"></script>
+<script src="<?= $_ENV['BASE_PATH'] ?>/js/app/index.js?v=<?= time() ?>"></script>

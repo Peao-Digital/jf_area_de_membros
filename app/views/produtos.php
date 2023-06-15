@@ -28,4 +28,4 @@
 
 </div>
 
-<script src="<?= $_ENV['BASE_PATH'] ?>/js/app/produtos.js"></script>
+<script src="<?= $_ENV['BASE_PATH'] ?>/js/app/produtos.js?v=<?= time() ?>"></script>

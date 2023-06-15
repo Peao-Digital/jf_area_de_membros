@@ -9,11 +9,11 @@
   <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/bootstrap.min.css">
 
   <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/all.min.css">
-  <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/produtos.css">
-  <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/template.css">
-  <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/index.css">
+  <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/produtos.css?v=<?= time() ?>">
+  <link rel=" stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/template.css?v=<?= time() ?>">
+  <link rel=" stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/index.css?v=<?= time() ?>">
 
-  <script src="<?= $_ENV['BASE_PATH'] ?>/js/jquery.min.js"></script>
+  <script src=" <?= $_ENV['BASE_PATH'] ?>/js/jquery.min.js"></script>
   <script src="<?= $_ENV['BASE_PATH'] ?>/js/jquery.mask.js"></script>
   <script src="<?= $_ENV['BASE_PATH'] ?>/js/bootstrap.min.js"></script>
   <script src="<?= $_ENV['BASE_PATH'] ?>/js/all.min.js"></script>
@@ -26,9 +26,6 @@
 
   <section class="container" id="container">
     <?= $this->section('content') ?>
-
-    
-
     <?php if (isset($guard)) : ?>
       <input type="hidden" class="valid" name="<?= $guard->getTokenNameKey() ?>" value="<?= $guard->getTokenName() ?>">
       <input type="hidden" class="valid" name="<?= $guard->getTokenValueKey() ?>" value="<?= $guard->getTokenValue() ?>">
