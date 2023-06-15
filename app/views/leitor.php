@@ -15,8 +15,8 @@
       }
     </style>
     
-    <script src="<?= $_ENV['BASE_PATH'] ?>/js/pdf.min.js"></script>
-    <script src="<?= $_ENV['BASE_PATH'] ?>/js/pdf.worker.min.js"></script>
+    <script src="<?= $_ENV['BASE_PATH'] ?>/js/lib/pdf.min.js"></script>
+    <script src="<?= $_ENV['BASE_PATH'] ?>/js/lib/pdf.worker.min.js"></script>
   </head>
   <body oncontextmenu='return false'>
 
