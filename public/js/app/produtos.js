@@ -18,8 +18,8 @@ $(document).ready(function () {
 
   const ObterItem = (productId) => {
     const items = {
-      '47214': { tipo: 'pdf', file: 'exemplo.pdf'},
-      '76587': { tipo: 'pdf', file: 'exemplo.pdf'},
+      '47214': { tipo: 'pdf', file: 'exemplo.pdf' },
+      '76587': { tipo: 'pdf', file: 'exemplo.pdf' },
       '76204': { tipo: 'pdf', file: 'exemplo.pdf' },
       '36673': {
         tipo: 'video',
@@ -53,14 +53,14 @@ $(document).ready(function () {
     if (isLiberado) {
       return `
         <a class="btn-product open-modal" data-value="${productId}" data-name="${productName}" href="#">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body"></div>
           </div>
         </a>`;
     } else {
       return `
         <a class="btn-product" href="https://api.whatsapp.com/send/?phone=5491025477&">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
             </div>
@@ -78,7 +78,7 @@ $(document).ready(function () {
           <input type="hidden" class="valid" name="csrf_name" value="${csrfName}">
           <input type="hidden" class="valid" name="csrf_value" value="${csrfValue}">
           <button class="btn-product" type="submit">
-            <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
+            <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
               <div class="card-body"></div>
             </div>
           </button>
@@ -86,7 +86,7 @@ $(document).ready(function () {
     } else {
       return `
         <a class="btn-product" href="https://api.whatsapp.com/send/?phone=5491025477&">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
             </div>
@@ -123,37 +123,37 @@ $(document).ready(function () {
     $("#mascara").show();
 
     fetch(url, { method: 'GET' })
-    .then(response => response.json())
-    .then(json => {
-      json.forEach((val) => {
-        const isLiberado = val.liberado === 'S';
-        const item = ObterItem(val.produto_id);
+      .then(response => response.json())
+      .then(json => {
+        json.forEach((val) => {
+          const isLiberado = val.liberado === 'S';
+          const item = ObterItem(val.produto_id);
 
-        let html = '';
+          let html = '';
 
-        if (item.tipo === 'video') {
-          html = CardVideo(device, val.produto_id, val.nome_produto, isLiberado);
-        } else {
-          html = CardPDF(device, val.produto_id, item.file, isLiberado, params[1], params[2]);
-        }
+          if (item.tipo === 'video') {
+            html = CardVideo(device, val.produto_id, val.nome_produto, isLiberado);
+          } else {
+            html = CardPDF(device, val.produto_id, item.file, isLiberado, params[1], params[2]);
+          }
 
-        divProducts.append(html);
-      });
+          divProducts.append(html);
+        });
 
-      divProducts.on("click", ".open-modal", function () {
-        var modalbody = modalProdutos.find(".modal-body");
-        var modaltitle = modalProdutos.find(".modal-title");
-        
-        var productId = $(this).data('value');
-        var productName = $(this).data('name');
+        divProducts.on("click", ".open-modal", function () {
+          var modalbody = modalProdutos.find(".modal-body");
+          var modaltitle = modalProdutos.find(".modal-title");
 
-        const item = ObterItem(productId);
+          var productId = $(this).data('value');
+          var productName = $(this).data('name');
 
-        modalbody.empty();
-        var embedHtml = "";
-        item.videos.forEach((video) => {
+          const item = ObterItem(productId);
 
-          embedHtml += `
+          modalbody.empty();
+          var embedHtml = "";
+          item.videos.forEach((video) => {
+
+            embedHtml += `
             <div class="videos">
               <p>${video.nome}</p>
               <div class="embed-responsive">
@@ -161,18 +161,18 @@ $(document).ready(function () {
               </div>
             </div>
             <br>`;
+          });
+          modaltitle.html(productName)
+          modalbody.html(embedHtml);
+          modalProdutos.modal("show");
         });
-        modaltitle.html(productName)
-        modalbody.html(embedHtml);
-        modalProdutos.modal("show");
-      });
 
-      $("#mascara").hide();
-    })
-    .catch(error => {
-      $("#mascara").hide();
-      console.log(error);
-    });
+        $("#mascara").hide();
+      })
+      .catch(error => {
+        $("#mascara").hide();
+        console.log(error);
+      });
   };
 
 
