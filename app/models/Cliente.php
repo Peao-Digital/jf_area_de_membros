@@ -26,12 +26,12 @@
       $this->documento       = $obj->customer->doc;
       $this->tipo_documento  = $obj->customer->doc_type;
 
-      $this->cep             = $obj->address->zipcode;
-      $this->endereco        = $obj->address->address;
-      $this->endereco_numero = $obj->address->number;
-      $this->bairro          = $obj->address->neighborhood;
-      $this->cidade          = $obj->address->city;
-      $this->estado          = $obj->address->state;
+      $this->cep             = $obj->address->zipcode??null;
+      $this->endereco        = $obj->address->address??null;
+      $this->endereco_numero = $obj->address->number??null;
+      $this->bairro          = $obj->address->neighborhood??null;
+      $this->cidade          = $obj->address->city??null;
+      $this->estado          = $obj->address->state??null;
     }
 
     private function existe() {

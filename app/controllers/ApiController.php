@@ -88,7 +88,7 @@
       **/
       $vars = [
         'registration_date_start' => $this->data_inicial, 'registration_date_end' => $this->data_final, 
-        'page' => $pagina, 'status' => 4
+        'page' => $pagina, 'status' => 5
       ];
       $url = $this->url_dados . '?' . http_build_query($vars);
 
