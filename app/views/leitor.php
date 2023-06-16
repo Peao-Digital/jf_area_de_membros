@@ -9,7 +9,7 @@
   <script src=" <?= $_ENV['BASE_PATH'] ?>/js/lib/jquery.min.js"></script>
 
 </head>
-<body ><!--oncontextmenu='return false'-->
+<body oncontextmenu='return false'>
 
   <?php if (isset($guard)) : ?>
     <input type="hidden" class="valid" id="pdf" value="<?= $pdf ?>">
