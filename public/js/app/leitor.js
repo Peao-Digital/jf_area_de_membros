@@ -3,7 +3,8 @@ let pdf = document.getElementById("pdf").value,
   csrf_name = document.getElementById("csrf_name").value,
   csrf_value = document.getElementById("csrf_value").value;
 
-let url = `leitor/arquivo?pdf=${pdf}&csrf_name=${csrf_name}&csrf_value=${csrf_value}`;
+//let url = `leitor/arquivo?pdf=${pdf}&csrf_name=${csrf_name}&csrf_value=${csrf_value}`;
+let url = `pdf/${pdf}`;
 
 const renderPage = (pageNumber, canvas) => {
   thePdf.getPage(pageNumber).then(function(page) {
