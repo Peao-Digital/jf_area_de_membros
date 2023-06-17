@@ -9,7 +9,7 @@
   <script src=" <?= $_ENV['BASE_PATH'] ?>/js/lib/jquery.min.js"></script>
 
 </head>
-<body ><!--oncontextmenu='return false'-->
+<body oncontextmenu='return false'>
 
   <iframe id="pdf_viewer" onload="removerDownload()" 
     src="https://docs.google.com/gview?embedded=true&url=https://acesso.seumapadariqueza.com.br/pdf/<?=$pdf?>" 

@@ -130,14 +130,16 @@ $(document).ready(function () {
           const item = ObterItem(val.produto_id);
 
           let html = '';
-
-          if (item.tipo === 'video') {
-            html = CardVideo(device, val.produto_id, val.nome_produto, isLiberado);
-          } else {
-            html = CardPDF(device, val.produto_id, item.file, isLiberado, params[1], params[2]);
+          if(item != undefined) {
+            if (item.tipo === 'video') {
+              html = CardVideo(device, val.produto_id, val.nome_produto, isLiberado);
+            } else {
+              html = CardPDF(device, val.produto_id, item.file, isLiberado, params[1], params[2]);
+            }
+  
+            divProducts.append(html);
           }
-
-          divProducts.append(html);
+          
         });
 
         divProducts.on("click", ".open-modal", function () {
