@@ -154,9 +154,10 @@ $(document).ready(function () {
 
         let html = '';
         if(item != undefined) {
+
           if (item.tipo == 'video') {
             html = CardVideo(device, val.produto_id, val.nome_produto, isLiberado);
-          } if(item.tipo == 'link') {
+          } else if(item.tipo == 'link') {
             html = CardLink(device, val.produto_id, item.link, isLiberado);
           } else {
             html = CardPDF(device, val.produto_id, item.file, isLiberado, params[1], params[2]);
