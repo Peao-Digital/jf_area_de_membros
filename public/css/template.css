@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 html,
 body {
   height: 100%;
@@ -6,7 +8,7 @@ body {
   background: -webkit-linear-gradient(86deg, rgba(0, 30, 117, 1) 0%, rgba(0, 22, 87, 1) 88%);
   background: linear-gradient(86deg, rgba(0, 30, 117, 1) 0%, rgba(0, 22, 87, 1) 88%);
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#001e75", endColorstr="#001657", GradientType=1);
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Montserrat', sans-serif;
 }
 
 section#container {
@@ -14,6 +16,8 @@ section#container {
   display: flex;
   justify-content: center;
 }
+
+
 
 /* CSS DA DIV MASCARA */
 #mascara{
@@ -25,4 +29,15 @@ section#container {
   width: 100%;
   background: url(../img/loading.gif) center center no-repeat rgb(0 0 0 / 75%);
   display: none;
+}
+
+@media screen and (max-width:900px){
+    
+  section#container {
+    padding:0;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
 }

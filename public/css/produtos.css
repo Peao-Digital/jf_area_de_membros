@@ -48,11 +48,10 @@
   display: flex;
   padding: 0;
   margin: 0;
-  align-items: flex-end;
-  justify-content: space-between;
-  flex-direction: row-reverse;
   cursor: pointer;
   border-radius: 5px;
+  justify-content: center;
+  align-items: center;
 }
 
 .card {
@@ -75,7 +74,7 @@
 }
 
 .fa-lock {
-  font-size: 24px;
+  font-size: 60px;
   color: #ffda00;
   padding: 10px;
 }
@@ -129,12 +128,12 @@
   display: inline-block;
   width: 340px;
   height: 200px;
-  margin: 0;
-  border: 0;
+  margin: 10px;
   padding: 0;
   text-decoration: none;
   background: transparent;
   border-radius: 5px;
+  border: 0.5px solid #ffffff60;
 }
 
 .btn-product:hover {
@@ -147,12 +146,12 @@
     display: inline-block;
     width: 500px;
     height: 200px;
-    margin: 0;
-    border: 0;
+    margin: 10px;
     padding: 0;
     text-decoration: none;
     background: transparent;
     border-radius: 5px;
+    border: 0.5px solid #ffffff60;
   }
 }
 
@@ -161,12 +160,12 @@
     display: inline-block;
     width: 900px;
     height: 200px;
-    margin: 0;
-    border: 0;
+    margin: 10px;
     padding: 0;
     text-decoration: none;
     background: transparent;
     border-radius: 5px;
+    border: 0.5px solid #ffffff60;
   }
 }
 
@@ -175,11 +174,11 @@
     display: inline-block;
     width: 1200px;
     height: 200px;
-    margin: 0;
-    border: 0;
+    margin: 10px;
     padding: 0;
     text-decoration: none;
     background: transparent;
     border-radius: 5px;
+    border: 0.5px solid #ffffff60;
   }
 }

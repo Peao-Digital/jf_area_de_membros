@@ -12,6 +12,13 @@
   align-items: center;
 }
 
+/* Input */
+
+input{
+  border-radius: 0!important;
+  line-height: 2!important;
+}
+
 
 /* Imagens */
 
@@ -66,6 +73,7 @@
   color: black;
   font-weight: bold;
   border-radius: 50px;
+  line-height: 2;
   background-color: #ffda00 !important;
 }
 

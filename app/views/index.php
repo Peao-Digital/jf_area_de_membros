@@ -19,7 +19,7 @@
 
       <form id="formulario">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="Digite aqui seu CPF ou CNPJ" id="cnpjf" />
+          <input type="text" class="form-control" placeholder="DIGITE AQUI SEU CPF OU CNPJ" id="cnpjf" />
           <div class="invalid-feedback">CPF ou CNPJ Inválido</div>
           <Button class="btn btn-acessar" type="submit">ACESSAR AGORA</Button>
         </div>
