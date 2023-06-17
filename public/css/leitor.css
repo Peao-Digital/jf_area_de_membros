@@ -18,18 +18,9 @@ iframe {
   display: inline-block !important;
   position: fixed;
   right: 0;
-  top: 0;
-  margin: 2% 5% 0% 0%;
-  font-weight: bold;
-  background-color: #ffc107 !important;
-}
-
-.btn-back:hover {
-  display: inline-block;
-  position: fixed;
-  right: 0;
-  top: 0;
-  margin: 2% 5% 0% 0%;
+  top: -3px;
+  margin: 12px 12px 0% 0%;
+  padding: 10px;
   font-weight: bold;
   background-color: #ffc107 !important;
 }

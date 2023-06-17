@@ -19,11 +19,6 @@
     $app->any('/api', ApiController::class);
 
     $app->any('/leitor', function($request, $response, $args) use ($app, $guard) {
-      return (new LeitorPdfController)->index($request, $response, $guard);
+      return (new LeitorPdfController)->index($request, $response);
     })->add(new CsrfMiddleware($guard));
-
-    $app->get('/leitor/arquivo', function($request, $response, $args) use ($app) {
-      return (new LeitorPdfController)->arquivo($request, $response);
-    })->add(new CsrfMiddleware($guard));
-
   };
