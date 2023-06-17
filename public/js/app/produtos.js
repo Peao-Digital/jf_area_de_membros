@@ -19,8 +19,8 @@ $(document).ready(function () {
   const ObterItem = (productId) => {
     const items = {
       '47214': { tipo: 'pdf', file: 'exemplo.pdf' },
-      '76587': { tipo: 'pdf', file: 'exemplo.pdf' },
-      '76204': { tipo: 'pdf', file: 'exemplo.pdf' },
+      '76587': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978' },
+      '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978' },
       '36673': {
         tipo: 'video',
         videos: [
@@ -96,6 +96,29 @@ $(document).ready(function () {
     }
   };
 
+  const CardLink = (device, productId, link, isLiberado) => {
+    if (isLiberado) {
+      return `
+        <a class="btn-product" href="${link}">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
+            <div class="card-body">
+            </div>
+            <div class="blur-effect"></div>
+          </div>
+        </a>`;
+    } else {
+      return `
+        <a class="btn-product" href="https://api.whatsapp.com/send/?phone=5491025477&">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
+            <div class="card-body">
+              <i class="fa-solid fa-lock"></i>
+            </div>
+            <div class="blur-effect"></div>
+          </div>
+        </a>`;
+    }
+  }
+
   const buscar_cliente = () => {
     const query = window.location.search;
     const params = new URLSearchParams(query);
@@ -123,60 +146,61 @@ $(document).ready(function () {
     $("#mascara").show();
 
     fetch(url, { method: 'GET' })
-      .then(response => response.json())
-      .then(json => {
-        json.forEach((val) => {
-          const isLiberado = val.liberado === 'S';
-          const item = ObterItem(val.produto_id);
+    .then(response => response.json())
+    .then(json => {
+      json.forEach((val) => {
+        const isLiberado = val.liberado === 'S';
+        const item = ObterItem(val.produto_id);
 
-          let html = '';
-          if(item != undefined) {
-            if (item.tipo === 'video') {
-              html = CardVideo(device, val.produto_id, val.nome_produto, isLiberado);
-            } else {
-              html = CardPDF(device, val.produto_id, item.file, isLiberado, params[1], params[2]);
-            }
-  
-            divProducts.append(html);
+        let html = '';
+        if(item != undefined) {
+          if (item.tipo == 'video') {
+            html = CardVideo(device, val.produto_id, val.nome_produto, isLiberado);
+          } if(item.tipo == 'link') {
+            html = CardLink(device, val.produto_id, item.link, isLiberado);
+          } else {
+            html = CardPDF(device, val.produto_id, item.file, isLiberado, params[1], params[2]);
           }
-          
-        });
 
-        divProducts.on("click", ".open-modal", function () {
-          var modalbody = modalProdutos.find(".modal-body");
-          var modaltitle = modalProdutos.find(".modal-title");
-
-          var productId = $(this).data('value');
-          var productName = $(this).data('name');
-
-          const item = ObterItem(productId);
-
-          modalbody.empty();
-          var embedHtml = "";
-          item.videos.forEach((video) => {
-
-            embedHtml += `
-            <div class="videos">
-              <p>${video.nome}</p>
-              <div class="embed-responsive">
-                <iframe class="embed-responsive-item" src="${video.link}" allowfullscreen></iframe>
-              </div>
-            </div>
-            <br>`;
-          });
-          modaltitle.html(productName)
-          modalbody.html(embedHtml);
-          modalProdutos.modal("show");
-        });
-
-        $("#mascara").hide();
-      })
-      .catch(error => {
-        $("#mascara").hide();
-        console.log(error);
+          divProducts.append(html);
+        }
+        
       });
-  };
 
+      divProducts.on("click", ".open-modal", function () {
+        var modalbody = modalProdutos.find(".modal-body");
+        var modaltitle = modalProdutos.find(".modal-title");
+
+        var productId = $(this).data('value');
+        var productName = $(this).data('name');
+
+        const item = ObterItem(productId);
+
+        modalbody.empty();
+        var embedHtml = "";
+        item.videos.forEach((video) => {
+
+          embedHtml += `
+          <div class="videos">
+            <p>${video.nome}</p>
+            <div class="embed-responsive">
+              <iframe class="embed-responsive-item" src="${video.link}" allowfullscreen></iframe>
+            </div>
+          </div>
+          <br>`;
+        });
+        modaltitle.html(productName)
+        modalbody.html(embedHtml);
+        modalProdutos.modal("show");
+      });
+
+      $("#mascara").hide();
+    })
+    .catch(error => {
+      $("#mascara").hide();
+      console.log(error);
+    });
+  };
 
   const params = buscar_cliente();
   buscar_produtos(params);
