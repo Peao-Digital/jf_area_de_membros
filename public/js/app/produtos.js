@@ -31,6 +31,7 @@ $(document).ready(function () {
       '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seumapadariqueza.com.br/comunidade/?utm_content=area-membros'},
       '36673': {
         tipo: 'video',
+        linkAlt: 'https://seumapadariqueza.com.br/metodo-ganhe/?utm_content=area-membros',
         videos: [
           { nome: 'INTRO CURSO', link: 'https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=9481606c-eb6b-4886-a6f3-aa3afd61961f' },
           { nome: 'Trocando de conta', link: 'https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=9a8b3ee7-32dc-406f-ace7-5b737e3743ea' },
@@ -57,7 +58,7 @@ $(document).ready(function () {
     return items[productId];
   };
 
-  const CardVideo = (device, productId, productName, isLiberado) => {
+  const CardVideo = (device, productId, productName, linkAlt, isLiberado) => {
     if (isLiberado) {
       return `
         <a class="btn-product open-modal" data-value="${productId}" data-name="${productName}" href="#">
@@ -67,7 +68,7 @@ $(document).ready(function () {
         </a>`;
     } else {
       return `
-        <a class="btn-product" href="https://api.whatsapp.com/send/?phone=5491025477&">
+        <a class="btn-product" href="${linkAlt}">
           <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
@@ -163,7 +164,7 @@ $(document).ready(function () {
         if(item != undefined) {
 
           if (item.tipo == 'video') {
-            html = CardVideo(device, val.produto_id, val.nome_produto, isLiberado);
+            html = CardVideo(device, val.produto_id, val.nome_produto, item.linkAlt, isLiberado);
           } else if(item.tipo == 'link') {
             html = CardLink(device, val.produto_id, item.link, item.linkAlt, isLiberado);
           } else {
