@@ -13,7 +13,7 @@
 
   <iframe id="pdf_viewer" onload="removerDownload()" 
     src="https://docs.google.com/gview?embedded=true&url=https://acesso.seumapadariqueza.com.br/pdf/<?=$pdf?>" 
-    allowfullscreen webkitallowfullscreen></iframe>
+    allowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
   <div id="pdf-viewer">
     <button onclick="goBack()" class="btn btn-back">Voltar</button>

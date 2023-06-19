@@ -1,4 +1,12 @@
 /* Align */
+#products {
+  margin-top: 0!important;
+}
+
+#aviso {
+  color: white;
+  margin: 0!important;
+}
 
 .row-products {
   display: flex;

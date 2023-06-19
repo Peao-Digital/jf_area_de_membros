@@ -12,6 +12,10 @@
       return (new ProdutoController)->index($request, $response, $guard);
     })->add(new CsrfMiddleware($guard));
 
+    $app->get('/verificar_cliente', function($request, $response, $args) use ($app, $guard) {
+      return (new ProdutoController)->verificar_cliente($request, $response, $guard);
+    })->add(new CsrfMiddleware($guard));
+
     $app->get('/produtos/consultar', function($request, $response, $args) use ($app) {
       return (new ProdutoController)->consultar($request, $response);
     })->add(new CsrfMiddleware($guard));

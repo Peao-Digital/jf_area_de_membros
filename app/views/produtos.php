@@ -1,9 +1,15 @@
 <?php $this->layout('template', ['title' => 'Produtos', 'guard' => isset($guard) ? $guard : null]) ?>
 
+<link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/produtos.css?v=<?= time() ?>">
+
 <div class="row-products">
 
   <div class="logo-img mt-4 mb-4">
     <img src="<?= $_ENV['BASE_PATH'] ?>/img/logo_mapa.png">
+  </div>
+
+  <div class="mt-4 mb-4" id="aviso">
+    <h4>ACESSO LIBERADO! Para acessar seus produtos escolha entre as opções ABAIXO:</h4>
   </div>
 
   <div class="products mt-4" id="products">

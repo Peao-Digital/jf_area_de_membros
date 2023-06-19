@@ -13,6 +13,22 @@
       return $response;
     }
 
+    public function verificar_cliente(Request $request, Response $response) {
+      $db = new PDOConnection($_ENV);
+      $cliente = isset($request->getQueryParams()['cliente'])? $request->getQueryParams()['cliente']:null;
+      
+      $sql = 
+        "SELECT DISTINCT 1
+         FROM api_transacao_item t_item
+         INNER JOIN api_cliente cli on (cli.id = t_item.cliente_id)
+         WHERE REGEXP_REPLACE(cli.documento, '[/.-]+', '') = REGEXP_REPLACE(:CLIENTE, '[/.-]+', '')";
+      $dados = $db->query($sql, [':CLIENTE' => $cliente]);
+      
+      $response->getBody()->write(json_encode($dados));
+      return $response
+        ->withHeader('content-type', 'application/json');
+    }
+
     public function consultar(Request $request, Response $response)  {
       $db = new PDOConnection($_ENV);
       $cliente = isset($request->getQueryParams()['cliente'])? $request->getQueryParams()['cliente']:null;

@@ -1,5 +1,7 @@
 <?php $this->layout('template', ['title' => 'João Financeira', 'guard' => isset($guard) ? $guard : null]) ?>
 
+<link rel=" stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/index.css?v=<?= time() ?>">
+
 <div class="row row-login">
 
   <div class="logo-img mt-4 mb-4">

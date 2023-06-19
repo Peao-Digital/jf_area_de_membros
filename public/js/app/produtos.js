@@ -1,4 +1,5 @@
 $(document).ready(function () {
+  const mascara = $("#mascara");
   var divProducts = $("#products");
   var modalProdutos = $("#modal_products");
 
@@ -17,10 +18,17 @@ $(document).ready(function () {
   };
 
   const ObterItem = (productId) => {
+    /*
+      MÉTODO: Ganhe mais dinheiro com as suas finanças - #47214 
+      Comunidade da Riqueza (SEMESTRAL) - #76587
+      Comunidade da Riqueza (ANUAL) - #76204 
+      MAPA DA RIQUEZA - #36673
+    */
+    //https://api.whatsapp.com/send/?phone=5491025477& 
     const items = {
-      '47214': { tipo: 'pdf', file: 'exemplo.pdf' },
-      '76587': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978' },
-      '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978' },
+      '47214': { tipo: 'pdf', file: 'exemplo.pdf', linkAlt: 'https://seumapadariqueza.com.br/metodo-ganhe/?utm_content=area-membros' },
+      '76587': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seumapadariqueza.com.br/comunidade/?utm_content=area-membros' },
+      '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seumapadariqueza.com.br/comunidade/?utm_content=area-membros'},
       '36673': {
         tipo: 'video',
         videos: [
@@ -70,7 +78,7 @@ $(document).ready(function () {
     }
   };
 
-  const CardPDF = (device, productId, file, isLiberado, csrfName, csrfValue) => {
+  const CardPDF = (device, productId, file, linkAlt, isLiberado, csrfName, csrfValue) => {
     if (isLiberado) {
       return `
         <form method="POST" action="leitor">
@@ -85,7 +93,7 @@ $(document).ready(function () {
         </form>`;
     } else {
       return `
-        <a class="btn-product" href="https://api.whatsapp.com/send/?phone=5491025477&">
+        <a class="btn-product" href="${linkAlt}">
           <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
@@ -96,7 +104,7 @@ $(document).ready(function () {
     }
   };
 
-  const CardLink = (device, productId, link, isLiberado) => {
+  const CardLink = (device, productId, link, linkAlt, isLiberado) => {
     if (isLiberado) {
       return `
         <a class="btn-product" href="${link}">
@@ -107,7 +115,7 @@ $(document).ready(function () {
         </a>`;
     } else {
       return `
-        <a class="btn-product" href="https://api.whatsapp.com/send/?phone=5491025477&">
+        <a class="btn-product" href="${linkAlt}">
           <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
@@ -142,7 +150,7 @@ $(document).ready(function () {
     const screenWidth = $(window).width();
     const device = ObterDispositivo(screenWidth);
 
-    $("#mascara").show();
+    mascara.show();
 
     fetch(url, { method: 'GET' })
     .then(response => response.json())
@@ -157,9 +165,9 @@ $(document).ready(function () {
           if (item.tipo == 'video') {
             html = CardVideo(device, val.produto_id, val.nome_produto, isLiberado);
           } else if(item.tipo == 'link') {
-            html = CardLink(device, val.produto_id, item.link, isLiberado);
+            html = CardLink(device, val.produto_id, item.link, item.linkAlt, isLiberado);
           } else {
-            html = CardPDF(device, val.produto_id, item.file, isLiberado, params[1], params[2]);
+            html = CardPDF(device, val.produto_id, item.file, item.linkAlt, isLiberado, params[1], params[2]);
           }
 
           divProducts.append(html);
@@ -194,10 +202,10 @@ $(document).ready(function () {
         modalProdutos.modal("show");
       });
 
-      $("#mascara").hide();
+      mascara.hide();
     })
     .catch(error => {
-      $("#mascara").hide();
+      mascara.hide();
       console.log(error);
     });
   };
