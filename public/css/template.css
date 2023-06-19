@@ -17,10 +17,93 @@ section#container {
   justify-content: center;
 }
 
+.wpp_button {
+  position: fixed;
+  width: 60px;
+  height: 60px;
+  bottom: 10px;
+  right: 10px;
+  background-color: #ffda00;
+  color: #FFF !important;
+  border-radius: 100%;
+  text-align: center;
+  box-shadow: 1px 1px 2px #888;
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.5rem;
+}
 
+.wpp_button:hover {
+  background-color: #ffed81
+}
+
+.closeButton {
+  margin-top: 5%;
+  color: black;
+  font-weight: bold;
+  border-radius: 50px;
+  background-color: #ffda00 !important;
+}
+
+.closeButton:hover,
+.closeButton:focus,
+.closeButton:active {
+  color: black;
+  background-color: #ffed81 !important;
+}
+
+.div_flutuant {
+  position: absolute;
+  right: 40px;
+  bottom: 35px;
+  background-color: #0f1b37;
+  box-shadow: 0px 0px 5px 1px #595959;
+  border-radius: 10px;
+}
+
+ul.flutuant_ul {
+  list-style: none;
+  margin-top: 10px;
+  padding: 0px 10px 0 10px;
+}
+
+.flutuant_ul li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: white;
+}
+
+.flutuant_ul li a:hover {
+  color: #c9c8c8;
+}
+
+hr {
+  color: white;
+}
+
+.oculto {
+  display: none;
+}
+
+#modal_aviso 
+.modal-content .modal-body {
+  background-color: #003d73;
+  color: white;
+  border: none;
+}
+
+
+#modal_aviso .modal-content {
+  background-color: #003d73;
+  color: white;
+  border: none;
+}
 
 /* CSS DA DIV MASCARA */
-#mascara{
+#mascara {
   position: fixed;
   left: 0px;
   top: 0px;
@@ -31,10 +114,10 @@ section#container {
   display: none;
 }
 
-@media screen and (max-width:900px){
-    
+@media screen and (max-width:900px) {
+
   section#container {
-    padding:0;
+    padding: 0;
     height: 100%;
     display: flex;
     justify-content: center;

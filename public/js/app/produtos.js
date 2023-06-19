@@ -198,6 +198,7 @@ $(document).ready(function () {
           </div>
           <br>`;
         });
+        
         modaltitle.html(productName)
         modalbody.html(embedHtml);
         modalProdutos.modal("show");

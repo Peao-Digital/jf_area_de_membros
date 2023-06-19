@@ -8,8 +8,8 @@
     <img src="<?= $_ENV['BASE_PATH'] ?>/img/logo_mapa.png">
   </div>
 
-  <div class="mt-4 mb-4" id="aviso">
-    <h4>ACESSO LIBERADO! Para acessar seus produtos escolha entre as opções ABAIXO:</h4>
+  <div class="mt-4" id="aviso">
+    <h5 class="title_acesso">ACESSO LIBERADO! Para acessar seus produtos escolha entre as opções ABAIXO:</h5>
   </div>
 
   <div class="products mt-4" id="products">

@@ -8,20 +8,20 @@
     <img src="<?= $_ENV['BASE_PATH'] ?>/img/logo_mapa.png">
   </div>
 
-  <div class="account-title mt-4 mb-4">
+  <div class="account-title mt-4 mb-2">
     <h4>Acesse a sua conta</h4>
   </div>
 
   <div class="card card-login">
     <div class="card-body">
 
-      <div class="subtitle mb-4">
+      <div class="subtitle">
         <p>PREENCHA SEUS DADOS</p>
       </div>
 
       <form id="formulario">
         <div class="form-group">
-          <input type="text" class="form-control" placeholder="DIGITE AQUI SEU CPF OU CNPJ" id="cnpjf" />
+          <input type="text" class="form-control custom-form" placeholder="DIGITE AQUI SEU CPF" id="cnpjf" />
           <div class="invalid-feedback">CPF ou CNPJ Inválido</div>
           <Button class="btn btn-acessar" type="submit">ACESSAR AGORA</Button>
         </div>
