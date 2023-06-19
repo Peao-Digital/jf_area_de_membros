@@ -103,7 +103,6 @@ $(document).ready(function () {
           <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
             </div>
-            <div class="blur-effect"></div>
           </div>
         </a>`;
     } else {
