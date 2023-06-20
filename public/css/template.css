@@ -56,7 +56,7 @@ section#container {
 }
 
 .div_flutuant {
-  position: absolute;
+  position: fixed;
   right: 40px;
   bottom: 35px;
   background-color: #0f1b37;
