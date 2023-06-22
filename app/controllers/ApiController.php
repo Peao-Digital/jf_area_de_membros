@@ -116,7 +116,9 @@
           }
 
           if(!$json->success) {
-            $this->erro_msg = json_encode($json);
+            if ($pagina == 1) {
+              $this->erro_msg = json_encode($json);
+            }
             break;
           }
           
@@ -155,7 +157,7 @@
         if(!isset($this->temp_clientes[$dado->customer->doc])) {
           $clienteObj = new Cliente($db, $dado);
           if(!$clienteObj->salvar(false)) {
-            $this->erro_msg = 'Erro ao salvar o cliente!<br>Cliente: ' . $clienteObj->documento;
+            $this->erro_msg = 'Erro ao salvar o cliente!<br>Cliente: ' . $clienteObj->documento . ':' . $clienteObj->db->get_error();
             $ok = false;
             break;
           }
@@ -172,7 +174,7 @@
           if(!isset($this->temp_itens[$item->code])) {
             $itemObj = new Item($db, $item);
             if(!$itemObj->salvar(false)) {
-              $this->erro_msg = 'Erro ao salvar o item!<br>Item: ' . $itemObj->codigo_item;
+              $this->erro_msg = 'Erro ao salvar o item!<br>Item: ' . $itemObj->codigo_item  . ':' . $itemObj->db->get_error();
               $ok = false;
               break;
             }
@@ -189,7 +191,7 @@
           $transacaoObj->codigo_transacao = $dado->transaction_code;
           
           if(!$transacaoObj->salvar(false)) {
-            $this->erro_msg = 'Erro ao salvar o vinculo de item com cliente!<br>Vinculo: Item ' . $item->code . " Cliente " . $dado->customer->doc;
+            $this->erro_msg = 'Erro ao salvar o vinculo de item com cliente!<br>Vinculo: Item ' . $item->code . " Cliente " . $dado->customer->doc   . ':' . $transacaoObj->db->get_error();
             $ok = false;
             break;
           }
