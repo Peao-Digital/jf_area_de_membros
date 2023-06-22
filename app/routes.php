@@ -8,6 +8,10 @@
       return (new HomeController)->index($request, $response, $guard);
     });
 
+    $app->get('/video', function($request, $response, $args) use ($app) {
+      return (new ProdutoController)->redirecionar_videos($request, $response);
+    });
+
     $app->get('/produtos', function($request, $response, $args) use ($app, $guard) {
       return (new ProdutoController)->index($request, $response, $guard);
     })->add(new CsrfMiddleware($guard));

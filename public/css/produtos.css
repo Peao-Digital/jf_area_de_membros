@@ -15,6 +15,16 @@
   flex-direction: column;
 }
 
+.row-videos {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  align-items: center;
+  align-content: space-between;
+}
+
+
 .modal-body {
   display: flex;
   flex-direction: row;
@@ -60,16 +70,9 @@
   border-radius: 5px;
   justify-content: center;
   align-items: center;
-}
-
-.card {
-  position: relative;
-}
-
-.card-body {
-  position: relative;
   z-index: 1;
 }
+
 
 .blur-effect {
   position: absolute;
@@ -193,6 +196,13 @@
     border-radius: 5px;
     border: 0.5px solid #ffffff60;
   }
+
+  .iframe-video {
+    position: relative;
+    width: 1100px;
+    height: 600px;
+  }
+
 }
 
 @media screen and (min-width:1400px) {
@@ -207,4 +217,12 @@
     border-radius: 5px;
     border: 0.5px solid #ffffff60;
   }
+
+
+  .iframe-video {
+    position: relative;
+    width: 1100px;
+    height: 600px;
+  }
+
 }
