@@ -3,7 +3,7 @@
   margin-top: 0 !important;
 }
 
-#aviso {
+#aviso, #aviso_video {
   color: white;
   margin: 0 !important;
 }
@@ -24,6 +24,9 @@
   align-content: space-between;
 }
 
+.videos {
+  text-align: center;
+}
 
 .modal-body {
   display: flex;

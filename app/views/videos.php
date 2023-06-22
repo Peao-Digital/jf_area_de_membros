@@ -10,6 +10,11 @@
   </div>
 
   <div class="videos">
+
+    <div class="mb-4">
+      <h5 id="aviso_video">ACESSO LIBERADO! Para acessar seus produtos escolha entre as opções ABAIXO:</h5>
+    </div>
+
     <div id="embed-video">
 
     </div>
