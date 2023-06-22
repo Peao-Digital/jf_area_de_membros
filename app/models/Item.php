@@ -12,12 +12,11 @@
     public $imagem = null;
 
     protected function alimentar_modelo_json($obj) {
-      $this->codigo_item    = $obj->code;
-      $this->nome           = $obj->name??null;
-      $this->descricao      = $obj->description??null;
-      $this->tipo           = $obj->type??null;
-      $this->tipo_descricao = $obj->type_text??null;
-      $this->imagem         = $obj->image??null;
+      $this->codigo_item    = $obj['code'];
+      $this->nome           = $obj['name']??null;
+      $this->descricao      = $obj['description']??null;
+      $this->tipo_descricao = $obj['type']??null;
+      $this->imagem         = $obj['image']??null;
     }
 
     private function existe() {

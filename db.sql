@@ -28,10 +28,20 @@ CREATE TABLE api_transacao_item (
   id int auto_increment,
   item_id int not null,
   cliente_id int not null,
+  codigo_plano_vendas int null,
+  codigo_plano_vendas_desc varchar(40) null,
   data_transacao date null,
   codigo_transacao varchar(20) not null,
   quantidade numeric null,
+  liberado char(1) null,
   primary key(id),
   foreign key (cliente_id) references api_cliente(id),
   foreign key (item_id) references api_item(id)
+);
+
+CREATE TABLE api_log (
+  id int auto_increment,
+  descricao text,
+  erro text,
+  primary key(id)
 );

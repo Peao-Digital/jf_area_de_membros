@@ -1,7 +1,7 @@
 <?php
   use Slim\App;
   use app\middlewares\CsrfMiddleware;
-  use app\controllers\{HomeController, ProdutoController, ApiController, LeitorPdfController};
+  use app\controllers\{HomeController, ProdutoController, WebhookController, LeitorPdfController};
 
   return function(App $app) use ($guard) {
     $app->get('/', function($request, $response, $args) use ($app, $guard) {
@@ -24,7 +24,7 @@
       return (new ProdutoController)->consultar($request, $response);
     })->add(new CsrfMiddleware($guard));
 
-    $app->any('/api', ApiController::class);
+    $app->any('/webhook', WebhookController::class);
 
     $app->any('/leitor', function($request, $response, $args) use ($app, $guard) {
       return (new LeitorPdfController)->index($request, $response);

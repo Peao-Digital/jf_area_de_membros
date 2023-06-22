@@ -35,13 +35,13 @@
       
       $sql = 
         "WITH liberados AS (
-          SELECT t_item.item_id
+          SELECT t_item.item_id, t_item.liberado
           FROM api_transacao_item t_item
           LEFT JOIN api_cliente cliente on (cliente.id = t_item.cliente_id)
           WHERE REGEXP_REPLACE(cliente.documento, '[/.-]+', '') = REGEXP_REPLACE(:CLIENTE, '[/.-]+', '')
         )
         SELECT item.codigo_item produto_id, item.nome nome_produto, item.descricao, item.imagem,
-          (CASE WHEN liberados.item_id is not null THEN 'S' ELSE 'N' END) liberado
+         (CASE WHEN liberados.item_id is not null THEN liberados.liberado ELSE 'N' END) liberado
         FROM api_item item
         LEFT JOIN liberados on (liberados.item_id = item.id)
         ORDER BY 1";

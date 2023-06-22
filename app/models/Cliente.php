@@ -16,22 +16,22 @@
     public $cep = null;
 
     protected function alimentar_modelo_json($obj) {
-      if(isset($obj->customer->phone)) {
-        $this->telefone = $obj->customer->phone;
-      } else if(isset($obj->customer->cellphone)) {
-        $this->telefone = $obj->customer->cellphone;
+      if(isset($obj['customer']['phone'])) {
+        $this->telefone = $obj['customer']['phone'];
+      } else if(isset($obj['customer']['cellphone'])) {
+        $this->telefone = $obj['customer']['cellphone'];
       }
       
-      $this->nome            = $obj->customer->name;
-      $this->documento       = $obj->customer->doc;
-      $this->tipo_documento  = $obj->customer->doc_type;
+      $this->nome            = $obj['customer']['name'];
+      $this->documento       = $obj['customer']['doc'];
+      $this->tipo_documento  = $obj['customer']['doc_type'];
 
-      $this->cep             = $obj->address->zipcode??null;
-      $this->endereco        = $obj->address->address??null;
-      $this->endereco_numero = $obj->address->number??null;
-      $this->bairro          = $obj->address->neighborhood??null;
-      $this->cidade          = $obj->address->city??null;
-      $this->estado          = $obj->address->state??null;
+      $this->cep             = $obj['address']['zipcode']??null;
+      $this->endereco        = $obj['address']['address']??null;
+      $this->endereco_numero = $obj['address']['number']??null;
+      $this->bairro          = $obj['address']['neighborhood']??null;
+      $this->cidade          = $obj['address']['city']??null;
+      $this->estado          = $obj['address']['state']??null;
     }
 
     private function existe() {
