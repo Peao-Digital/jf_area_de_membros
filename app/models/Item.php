@@ -43,7 +43,7 @@
         $args[':CODIGO_ITEM'] = $this->codigo_item;
       } else {
         $sql = "UPDATE api_item SET nome = :NOME, descricao = :DESCRICAO, imagem = :IMAGEM,
-         tipo = :TIPO, tipo_descricao = :TIPO_DESCRICAO WHERE id = :ID";
+        tipo = :TIPO, tipo_descricao = :TIPO_DESCRICAO WHERE id = :ID";
         $args[':ID'] = $this->id;
       }
 

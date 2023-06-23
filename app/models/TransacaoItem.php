@@ -20,7 +20,7 @@
       $args = [':CLIENTE_ID' => $this->cliente_id, ':ITEM_ID' => $this->item_id];
 
       $dados = $transacao->db->query($sql, $args);
- 
+
       if (!empty($dados)) {
         $this->id = $dados[0]['id'];
         return true;

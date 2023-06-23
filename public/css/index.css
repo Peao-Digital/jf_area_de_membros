@@ -8,6 +8,10 @@
   flex-direction: column;
 }
 
+.subtitle {
+    margin-bottom: 15px;
+}
+
 .suporte {
   display: flex;
   justify-content: center;
@@ -21,6 +25,7 @@ input {
   line-height: 2 !important;
   height: 50px;
   margin-bottom: 5px;
+  font-size: 20px;
 }
 
 

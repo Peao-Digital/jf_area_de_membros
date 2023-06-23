@@ -18,6 +18,8 @@ $(document).ready(function () {
   };
 
   const ObterItem = (productId) => {
+
+
     /*
       MÉTODO: Ganhe mais dinheiro com as suas finanças - #47214 
       Comunidade da Riqueza (SEMESTRAL) - #76587
@@ -26,10 +28,10 @@ $(document).ready(function () {
     */
     //https://api.whatsapp.com/send/?phone=5491025477& 
     const items = {
-      '82228': { tipo: 'pdf', file: 'exemplo.pdf', linkAlt: 'https://seumapadariqueza.com.br/metodo-ganhe/?utm_content=area-membros' },
-      '90507': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seumapadariqueza.com.br/comunidade/?utm_content=area-membros' },
-      '98648': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seumapadariqueza.com.br/comunidade/?utm_content=area-membros'},
-      '73831': {
+      '71102': { tipo: 'pdf', file: 'exemplo.pdf', linkAlt: 'https://seumapadariqueza.com.br/metodo-ganhe/?utm_content=area-membros' },
+      '76587': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seumapadariqueza.com.br/comunidade/?utm_content=area-membros' },
+      '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seumapadariqueza.com.br/comunidade/?utm_content=area-membros'},
+      '36673': {
         tipo: 'video',
         linkAlt: 'https://seumapadariqueza.com.br/metodo-ganhe/?utm_content=area-membros',
         videos: [
@@ -62,14 +64,14 @@ $(document).ready(function () {
     if (isLiberado) {
       return `
         <a class="btn-product open-modal" data-value="${productId}" data-name="${productName}" href="#">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body"></div>
           </div>
         </a>`;
     } else {
       return `
         <a class="btn-product" href="${linkAlt}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
             </div>
@@ -87,7 +89,7 @@ $(document).ready(function () {
           <input type="hidden" class="valid" name="csrf_name" value="${csrfName}">
           <input type="hidden" class="valid" name="csrf_value" value="${csrfValue}">
           <button class="btn-product" type="submit">
-            <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
+            <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
               <div class="card-body"></div>
             </div>
           </button>
@@ -95,7 +97,7 @@ $(document).ready(function () {
     } else {
       return `
         <a class="btn-product" href="${linkAlt}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
             </div>
@@ -109,7 +111,7 @@ $(document).ready(function () {
     if (isLiberado) {
       return `
         <a class="btn-product" href="${link}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
             </div>
           </div>
@@ -117,7 +119,7 @@ $(document).ready(function () {
     } else {
       return `
         <a class="btn-product" href="${linkAlt}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.jpg')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
             </div>
@@ -156,6 +158,7 @@ $(document).ready(function () {
     fetch(url, { method: 'GET' })
     .then(response => response.json())
     .then(json => {
+
       json.forEach((val) => {
         const isLiberado = val.liberado === 'S';
         const item = ObterItem(val.produto_id);

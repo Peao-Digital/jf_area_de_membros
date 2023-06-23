@@ -58,7 +58,7 @@
           "INSERT INTO api_cliente (nome, documento, tipo_documento, telefone, cep,
             endereco, endereco_numero, bairro, cidade, estado) 
           VALUES (:NOME, :DOCUMENTO, :TIPO_DOCUMENTO, :TELEFONE, :CEP, :ENDERECO, :END_NUMERO,
-           :BAIRRO, :CIDADE, :ESTADO)";
+          :BAIRRO, :CIDADE, :ESTADO)";
 
         $args[':DOCUMENTO'] = $this->documento;
         $args[':TIPO_DOCUMENTO'] = $this->tipo_documento;
@@ -66,7 +66,7 @@
         $sql = "UPDATE api_cliente SET nome = :NOME, telefone = :TELEFONE, cep = :CEP,
           endereco = :ENDERECO, endereco_numero = :END_NUMERO, bairro = :BAIRRO,
           cidade = :CIDADE, estado = :ESTADO
-         WHERE id = :ID";
+        WHERE id = :ID";
         $args[':ID'] = $this->id;
       }
 
