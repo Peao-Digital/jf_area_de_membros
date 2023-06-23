@@ -15,8 +15,12 @@
       $this->log = new Log();
       $json = $this->get_json();
 
-      if ($json != null) {
-        if($this->salvar_dados($json[0])) {
+      if ($json != null && $json != false) {
+        if(is_array($json)) {
+          $json[0] = $json;
+        }
+
+        if($this->salvar_dados($json)) {
           return $response;
         }
       }
