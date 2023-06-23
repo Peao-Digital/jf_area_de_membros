@@ -1,8 +1,8 @@
 CREATE TABLE api_cliente (
   id int auto_increment,
   documento varchar(30) not null unique,
-  tipo_documento varchar(10) not null,
-  nome varchar(200) not null,
+  tipo_documento varchar(10)  null,
+  nome varchar(200)  null,
   telefone varchar(30) null,
   cep varchar(20) null,
   endereco varchar(300) null,
