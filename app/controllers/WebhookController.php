@@ -56,7 +56,7 @@
         $clienteObj = new Cliente($db, $json);
         if(!$clienteObj->salvar(false)) {
           $this->log->descricao = 'Erro ao salvar o cliente! Cliente: ' . $clienteObj->documento;
-          $this->log->erro =  $clienteObj->db->get_error();
+          $this->log->erro = $clienteObj->db->get_error() . '|' . json_encode($json);
           $this->log->salvar();
           $ok = false;
         }
@@ -73,7 +73,7 @@
           $itemObj = new Item($db, $item);
           if(!$itemObj->salvar(false)) {
             $this->log->descricao = 'Erro ao salvar o item! Item: ' . $itemObj->codigo_item;
-            $this->log->erro = $itemObj->db->get_error();
+            $this->log->erro = $itemObj->db->get_error() . '|' . json_encode($json);
             $this->log->salvar();
             $ok = false;
           }
@@ -94,7 +94,7 @@
         
         if(!$transacaoObj->salvar(false)) {
           $this->log->descricao = 'Erro ao salvar o vinculo de item com cliente!<br>Vinculo: Item ' . $item['code'] . " Cliente " . $json['customer']['doc'];
-          $this->log->erro =  $transacaoObj->db->get_error();
+          $this->log->erro =  $transacaoObj->db->get_error() . '|' . json_encode($json);
           $this->log->salvar();
           $ok = false;
         }
