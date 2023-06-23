@@ -44,7 +44,9 @@
         (CASE WHEN liberados.item_id is not null THEN liberados.liberado ELSE 'N' END) liberado
         FROM api_item item
         LEFT JOIN liberados on (liberados.item_id = item.id)
-        ORDER BY 1";
+        ORDER BY (
+          FIELD(item.codigo_item, 36673, 76204,76587,71102)
+        )";
 
       $dados = $db->query($sql, [':CLIENTE' => $cliente]);
       
