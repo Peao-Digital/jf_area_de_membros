@@ -28,10 +28,10 @@ $(document).ready(function () {
     */
     //https://api.whatsapp.com/send/?phone=5491025477& 
     const items = {
-      '71102': { tipo: 'pdf', file: 'exemplo.pdf', linkAlt: 'https://seumapadariqueza.com.br/metodo-ganhe/?utm_content=area-membros' },
+      '36673': { tipo: 'pdf', file: 'exemplo.pdf', linkAlt: 'https://seumapadariqueza.com.br/metodo-ganhe/?utm_content=area-membros' },
       '76587': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seumapadariqueza.com.br/comunidade/?utm_content=area-membros' },
       '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seumapadariqueza.com.br/comunidade/?utm_content=area-membros'},
-      '36673': {
+      '71102': {
         tipo: 'video',
         linkAlt: 'https://seumapadariqueza.com.br/metodo-ganhe/?utm_content=area-membros',
         videos: [
