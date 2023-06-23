@@ -65,11 +65,10 @@
       $cliente_id = $this->temp_clientes[$json['customer']['doc']];
       
       foreach($json['items'] as $item) {
-//
-      //  /** 
-      //   * Gravando o item (inserindo ou atualizando as suas informações)
-      //   * Será gravado no array temp_itens para evitar repetir esta mesma ação durante esta execução
-      //  **/
+        /** 
+         * Gravando o item (inserindo ou atualizando as suas informações)
+         * Será gravado no array temp_itens para evitar repetir esta mesma ação durante esta execução
+        **/
         if(!isset($this->temp_itens[$item['code']])) {
           $itemObj = new Item($db, $item);
           if(!$itemObj->salvar(false)) {

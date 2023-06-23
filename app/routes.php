@@ -1,6 +1,6 @@
 <?php
   use Slim\App;
-  use app\middlewares\CsrfMiddleware;
+  use app\middlewares\{CsrfMiddleware, TokenMiddleware};
   use app\controllers\{HomeController, ProdutoController, WebhookController, LeitorPdfController};
 
   return function(App $app) use ($guard) {
@@ -24,7 +24,7 @@
       return (new ProdutoController)->consultar($request, $response);
     })->add(new CsrfMiddleware($guard));
 
-    $app->any('/webhook', WebhookController::class);
+    $app->any('/webhook', WebhookController::class)->add(new TokenMiddleware());
 
     $app->any('/leitor', function($request, $response, $args) use ($app, $guard) {
       return (new LeitorPdfController)->index($request, $response);
