@@ -2,14 +2,15 @@ $(document).ready(function () {
 
   const wpp = $("#btn-wpp");
   const divFlutuante = $(".div_flutuant");
-  const container = $("#container");
+  const container = $("#container .products-container");
+
+  console.log(container)
 
   const backbutton = $("#BackButton");
 
   const footer = () => {
     let dataAtual = new Date();
     let anoAtual = dataAtual.getFullYear();
-
 
     let html = `
     <footer class="footer" id="footer">
