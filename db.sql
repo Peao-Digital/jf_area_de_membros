@@ -43,6 +43,6 @@ CREATE TABLE api_log (
   id int auto_increment,
   descricao text,
   erro text,
-  criado_em timestamp default current_timestamp()
+  criado_em timestamp default current_timestamp(),
   primary key(id)
 );
