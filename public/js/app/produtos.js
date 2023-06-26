@@ -21,10 +21,10 @@ $(document).ready(function () {
 
 
     /*
-      MÉTODO: Ganhe mais dinheiro com as suas finanças - #47214 
+      MAPA DA RIQUEZA - #36673
       Comunidade da Riqueza (SEMESTRAL) - #76587
       Comunidade da Riqueza (ANUAL) - #76204 
-      MAPA DA RIQUEZA - #36673
+      MÉTODO: Ganhe mais dinheiro com as suas finanças - #71102 
     */
     //https://api.whatsapp.com/send/?phone=5491025477& 
     const items = {

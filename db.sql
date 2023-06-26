@@ -46,3 +46,8 @@ CREATE TABLE api_log (
   criado_em timestamp default current_timestamp()
   primary key(id)
 );
+
+insert into api_item (codigo_item, nome) values ('36673','MAPA DA RIQUEZA');
+insert into api_item (codigo_item, nome) values ('76587','Comunidade da Riqueza (SEMESTRAL)');
+insert into api_item (codigo_item, nome) values ('76204','Comunidade da Riqueza (ANUAL)');
+insert into api_item (codigo_item, nome) values ('71102','MÉTODO: Ganhe mais dinheiro com as suas finanças');
