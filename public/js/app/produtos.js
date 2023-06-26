@@ -21,19 +21,19 @@ $(document).ready(function () {
 
 
     /*
-      MAPA DA RIQUEZA - #36673
+      Caminho da Riqueza - #36673
       Comunidade da Riqueza (SEMESTRAL) - #76587
       Comunidade da Riqueza (ANUAL) - #76204 
       MÉTODO: Ganhe mais dinheiro com as suas finanças - #71102 
     */
     //https://api.whatsapp.com/send/?phone=5491025477& 
     const items = {
-      '36673': { tipo: 'pdf', file: 'exemplo.pdf', linkAlt: 'https://seumapadariqueza.com.br/metodo-ganhe/?utm_content=area-membros' },
-      '76587': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seumapadariqueza.com.br/comunidade/?utm_content=area-membros' },
-      '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seumapadariqueza.com.br/comunidade/?utm_content=area-membros'},
+      '36673': { tipo: 'pdf', file: 'exemplo.pdf', linkAlt: 'https://seucaminhodariqueza.com.br/metodo-ganhe/?utm_content=area-membros' },
+      '76587': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seucaminhodariqueza.com.br/comunidade/?utm_content=area-membros' },
+      '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seucaminhodariqueza.com.br/comunidade/?utm_content=area-membros' },
       '71102': {
         tipo: 'video',
-        linkAlt: 'https://seumapadariqueza.com.br/metodo-ganhe/?utm_content=area-membros',
+        linkAlt: 'https://seucaminhodariqueza.com.br/metodo-ganhe/?utm_content=area-membros',
         videos: [
           { nome: 'INTRO CURSO', link: 'https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=9481606c-eb6b-4886-a6f3-aa3afd61961f' },
           { nome: 'Trocando de conta', link: 'https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=9a8b3ee7-32dc-406f-ace7-5b737e3743ea' },
@@ -61,6 +61,11 @@ $(document).ready(function () {
   };
 
   const CardVideo = (device, productId, productName, linkAlt, isLiberado) => {
+
+    if (productName === null) {
+      productName = 'MÉTODO GANHE + DIN';
+    }
+
     if (isLiberado) {
       return `
         <a class="btn-product open-modal" data-value="${productId}" data-name="${productName}" href="#">
@@ -110,7 +115,7 @@ $(document).ready(function () {
   const CardLink = (device, productId, link, linkAlt, isLiberado) => {
     if (isLiberado) {
       return `
-        <a class="btn-product" href="${link}">
+        <a class="btn-product" id="product-${productId}" data-liberado="${isLiberado}" href="${link}">
           <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
             </div>
@@ -118,7 +123,7 @@ $(document).ready(function () {
         </a>`;
     } else {
       return `
-        <a class="btn-product" href="${linkAlt}">
+        <a class="btn-product" id="product-${productId}" data-liberado="${isLiberado}" href="${linkAlt}">
           <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
@@ -156,43 +161,47 @@ $(document).ready(function () {
     mascara.show();
 
     fetch(url, { method: 'GET' })
-    .then(response => response.json())
-    .then(json => {
+      .then(response => response.json())
+      .then(json => {
 
-      json.forEach((val) => {
-        const isLiberado = val.liberado === 'S';
-        const item = ObterItem(val.produto_id);
+        json.forEach((val) => {
+          const isLiberado = val.liberado === 'S';
+          const item = ObterItem(val.produto_id);
 
-        let html = '';
-        if(item != undefined) {
+          let html = '';
+          if (item != undefined) {
 
-          if (item.tipo == 'video') {
-            html = CardVideo(device, val.produto_id, val.nome_produto, item.linkAlt, isLiberado);
-          } else if(item.tipo == 'link') {
-            html = CardLink(device, val.produto_id, item.link, item.linkAlt, isLiberado);
-          } else {
-            html = CardPDF(device, val.produto_id, item.file, item.linkAlt, isLiberado, params[1], params[2]);
+            if (item.tipo == 'video') {
+              html = CardVideo(device, val.produto_id, val.nome_produto, item.linkAlt, isLiberado);
+
+            } else if (item.tipo == 'link') {
+              html = CardLink(device, val.produto_id, item.link, item.linkAlt, isLiberado);
+
+
+            } else {
+              html = CardPDF(device, val.produto_id, item.file, item.linkAlt, isLiberado, params[1], params[2]);
+            }
+
+            divProducts.append(html);
           }
 
-          divProducts.append(html);
-        }
-        
-      });
 
-      divProducts.on("click", ".open-modal", function () {
-        var modalbody = modalProdutos.find(".modal-body");
-        var modaltitle = modalProdutos.find(".modal-title");
+        });
 
-        var productId = $(this).data('value');
-        var productName = $(this).data('name');
+        divProducts.on("click", ".open-modal", function () {
+          var modalbody = modalProdutos.find(".modal-body");
+          var modaltitle = modalProdutos.find(".modal-title");
 
-        const item = ObterItem(productId);
+          var productId = $(this).data('value');
+          var productName = $(this).data('name');
 
-        modalbody.empty();
-        var embedHtml = "";
-        item.videos.forEach((video) => {
+          const item = ObterItem(productId);
 
-          embedHtml += `
+          modalbody.empty();
+          var embedHtml = "";
+          item.videos.forEach((video) => {
+
+            embedHtml += `
           <div class="videos">
             <p>${video.nome}</p>
             <div class="embed-responsive">
@@ -200,19 +209,32 @@ $(document).ready(function () {
             </div>
           </div>
           <br>`;
-        });
-        
-        modaltitle.html(productName)
-        modalbody.html(embedHtml);
-        modalProdutos.modal("show");
-      });
+          });
 
-      mascara.hide();
-    })
-    .catch(error => {
-      mascara.hide();
-      console.log(error);
-    });
+          modaltitle.html(productName)
+          modalbody.html(embedHtml);
+          modalProdutos.modal("show");
+        });
+
+        let productCard1 = $(`#product-76587`);
+        let productCard2 = $(`#product-76204`);
+
+        if(productCard1.data('liberado') === false){
+          productCard1.addClass("oculto");
+        }else if(productCard2.data('liberado') === false){
+          productCard2.addClass("oculto");
+        }
+
+        if (productCard1.hasClass('oculto') && productCard2.hasClass('oculto')) {
+          productCard2.removeClass('oculto');
+        }
+
+        mascara.hide();
+      })
+      .catch(error => {
+        mascara.hide();
+        console.log(error);
+      });
   };
 
   const params = buscar_cliente();

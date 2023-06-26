@@ -5,14 +5,14 @@
 <div class="row row-login">
 
   <div class="logo-img mt-4 mb-4">
-    <img src="<?= $_ENV['BASE_PATH'] ?>/img/logo_mapa.png">
+    <img src="<?= $_ENV['BASE_PATH'] ?>/img/logo_riqueza.png">
   </div>
 
-  <div class="account-title mt-4 mb-2">
+  <div class="account-title mt-4 mb-4">
     <h4>Acesse a sua conta</h4>
   </div>
 
-  <div class="card card-login">
+  <div class="card card-login mb-4">
     <div class="card-body">
 
       <div class="subtitle">
@@ -29,7 +29,7 @@
     </div>
   </div>
 
-  <div class="suporte mt-4">
+  <div class="suporte mt-4 mb-4">
     <a class="btn-suporte" href="https://api.whatsapp.com/send/?phone=5491025477&">
       <p class="suporte-duvidas">FICOU COM DÚVIDAS</p>
       <p class="suporte-clique">Clique aqui e fale com o suporte</p>

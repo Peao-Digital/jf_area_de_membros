@@ -10,7 +10,7 @@
 
   <link rel="stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/all.min.css">
   <link rel=" stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/template.css?v=<?= time() ?>">
-  
+
 
   <script src=" <?= $_ENV['BASE_PATH'] ?>/js/lib/jquery.min.js"></script>
   <script src="<?= $_ENV['BASE_PATH'] ?>/js/lib/jquery.mask.js"></script>
@@ -25,7 +25,7 @@
 
   <section class="container" id="container">
     <?= $this->section('content') ?>
-    
+
     <?php if (isset($guard)) : ?>
       <input type="hidden" class="valid" name="<?= $guard->getTokenNameKey() ?>" value="<?= $guard->getTokenName() ?>">
       <input type="hidden" class="valid" name="<?= $guard->getTokenValueKey() ?>" value="<?= $guard->getTokenValue() ?>">
@@ -36,10 +36,14 @@
 
   <div class="div_flutuant oculto">
     <ul class="flutuant_ul">
-      <li><a href="https://api.whatsapp.com/send/?phone=555491025477&text=Ol%C3%A1%21+N%C3%A3o+estou+conseguindo+acessar+a+plataforma&type=phone_number&app_absent=0">Não conseguiu acessar?</a></li><hr>
-      <li><a href="https://api.whatsapp.com/send/?phone=555491025477&text=Ol%C3%A1%21+Tenho+produtos+bloqueados+na+plataforma+e+quero+desbloquear&type=phone_number&app_absent=0">Seu produto está bloqueado?</a></li><hr>
-      <li><a href="https://api.whatsapp.com/send/?phone=555491025477&text=Ol%C3%A1%21+A+plataforma+tem+algum+erro+acontecendo...&type=phone_number&app_absent=0">Plataforma está com algum erro?</a></li><hr>
-      <li><a href="https://api.whatsapp.com/send/?phone=555491025477&text=Ol%C3%A1%21+Preciso+de+ajuda+do+setor+financeiro&type=phone_number&app_absent=0">Problema Financeiro ?</a></li><hr> <!-- Olá! Preciso de ajuda do setor financeiro -->
+      <li><a href="https://api.whatsapp.com/send/?phone=555491025477&text=Ol%C3%A1%21+N%C3%A3o+estou+conseguindo+acessar+a+plataforma&type=phone_number&app_absent=0">Não conseguiu acessar?</a></li>
+      <hr>
+      <li><a href="https://api.whatsapp.com/send/?phone=555491025477&text=Ol%C3%A1%21+Tenho+produtos+bloqueados+na+plataforma+e+quero+desbloquear&type=phone_number&app_absent=0">Seu produto está bloqueado?</a></li>
+      <hr>
+      <li><a href="https://api.whatsapp.com/send/?phone=555491025477&text=Ol%C3%A1%21+A+plataforma+tem+algum+erro+acontecendo...&type=phone_number&app_absent=0">Plataforma está com algum erro?</a></li>
+      <hr>
+      <li><a href="https://api.whatsapp.com/send/?phone=555491025477&text=Ol%C3%A1%21+Preciso+de+ajuda+do+setor+financeiro&type=phone_number&app_absent=0">Problema Financeiro ?</a></li>
+      <hr> <!-- Olá! Preciso de ajuda do setor financeiro -->
       <li><a href="https://api.whatsapp.com/send/?phone=555491025477&text=Ol%C3%A1%21+Eu+preciso+de+ajuda&type=phone_number&app_absent=0">Outro assunto?</a></li>
     </ul>
   </div>

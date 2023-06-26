@@ -5,11 +5,11 @@
 <div class="row-products">
 
   <div class="logo-img mt-4 mb-4">
-    <img src="<?= $_ENV['BASE_PATH'] ?>/img/logo_mapa.png">
+    <img src="<?= $_ENV['BASE_PATH'] ?>/img/logo_riqueza.png">
   </div>
 
-  <div class="mt-4" id="aviso">
-    <h5 class="title_acesso">ACESSO LIBERADO! Para acessar seus produtos escolha entre as opções ABAIXO:</h5>
+  <div class="mt-4 mb-4" id="aviso">
+    <h6 class="title_acesso">ACESSO LIBERADO! Para acessar seus produtos escolha entre as opções ABAIXO:</h6>
   </div>
 
   <div class="products mt-4" id="products">
