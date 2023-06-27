@@ -4,7 +4,7 @@
 
 <div class="row-products products-container">
 
-  <div class="logo-img mt-4 mb-4">
+  <div class="logo-img">
     <img src="<?= $_ENV['BASE_PATH'] ?>/img/logo_riqueza.png">
   </div>
 
