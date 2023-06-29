@@ -23,9 +23,9 @@
 
       $log = new Log();
       $log->descricao = 'Acesso não autorizado ao WebHook!';
-      $log->erro = 'Token da requisição: ' . $token . ' |' . $headers['Authorization']??'';
+      $log->erro = 'Token da requisição: ' . $token . ' |' . json_encode($headers);
       $log->salvar();
-
+      
       $response = new Response();
       $response->getBody()->write("Acesso não autorizado!");
       return $response->withStatus(401);
