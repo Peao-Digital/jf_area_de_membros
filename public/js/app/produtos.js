@@ -8,7 +8,7 @@ $(document).ready(function () {
   });
 
   const ObterDispositivo = (screenWidth) => {
-    if (screenWidth >= 1200) {
+    if (screenWidth >= 1000) {
       return 'desktop';
     } else if (screenWidth >= 600) {
       return 'tablet';
@@ -28,7 +28,7 @@ $(document).ready(function () {
     */
     //https://api.whatsapp.com/send/?phone=5491025477& 
     const items = {
-      '36673': { tipo: 'pdf', file: 'ebook.pdf', linkAlt: 'https://seucaminhodariqueza.com.br/metodo-ganhe/?utm_content=area-membros' },
+      '36673': { tipo: 'pdf', file: 'ebook.pdf', linkAlt: 'https://seucaminhodariqueza.com.br/caminhodariqueza?utm_content=area-de-membros' },
       '76587': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seucaminhodariqueza.com.br/comunidade/?utm_content=area-membros' },
       '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seucaminhodariqueza.com.br/comunidade/?utm_content=area-membros' },
       '71102': {
