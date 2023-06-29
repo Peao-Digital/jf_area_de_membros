@@ -12,7 +12,7 @@
 </head>
 <body oncontextmenu='return false'>
 
-  <iframe id="pdf_viewer" onload="desmascarar()" 
+  <iframe id="pdf_viewer" 
     src="https://docs.google.com/gview?embedded=true&url=https://acesso.seucaminhodariqueza.com.br/pdf/<?=$pdf?>" 
     allowfullscreen="true" webkitallowfullscreen="true"></iframe>
 
