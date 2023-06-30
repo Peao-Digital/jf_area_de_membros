@@ -132,6 +132,20 @@ hr {
   display: none;
 }
 
+
+@media screen and (max-width:350px){
+    
+  .footer {
+    color: white;
+    text-align: center;
+    font-size: 12px;
+    padding: 0px 60px 1px 47px;
+    position: relative;
+    bottom: 0;
+  }
+
+}
+
 @media screen and (max-width:900px) {
 
   section#container {

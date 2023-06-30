@@ -121,7 +121,19 @@ a.btn-suporte:hover {
   background-color: #032a4d;
 }
 
-@media screen and (max-width:400px) {
+@media screen and (max-width:345px) {
+  .card-login {
+    width: 315px;
+    min-height: 280px;
+    background-color: rgb(15, 27, 55);
+    box-shadow: 0px 0px 5px 1px #595959;
+    border-radius: 15px;
+    padding-top: 5%;
+    padding-bottom: 5%;
+  }
+}
+
+@media screen and (min-width: 345px) and (max-width:600px) {
   .card-login {
     width: 340px;
     min-height: 280px;
@@ -133,7 +145,7 @@ a.btn-suporte:hover {
   }
 }
 
-@media screen and (min-width: 450px) and (max-width:900px) {
+@media screen and (min-width: 600px) and (max-width:900px) {
   .card-login {
     width: 450px;
     min-height: 280px;
