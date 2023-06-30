@@ -4,8 +4,6 @@ $(document).ready(function () {
   const divFlutuante = $(".div_flutuant");
   const container = $("#container .products-container");
 
-  console.log(container)
-
   const backbutton = $("#BackButton");
 
   const footer = () => {

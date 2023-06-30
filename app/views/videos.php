@@ -2,8 +2,7 @@
 
 <link rel=" stylesheet" type="text/css" href="<?= $_ENV['BASE_PATH'] ?>/css/produtos.css?v=<?= time() ?>">
 
-
-<div class="row-videos">
+<div class="row-videos products-container">
 
   <div class="logo-img mt-4 mb-4">
     <img src="<?= $_ENV['BASE_PATH'] ?>/img/logo_riqueza.png">
@@ -12,7 +11,7 @@
   <div class="videos">
 
     <div class="mb-4">
-      <h5 id="aviso_video">ACESSO LIBERADO! Para acessar seus produtos escolha entre as opções ABAIXO:</h5>
+      <h6 id="aviso_video" class="title_acesso">ACESSO LIBERADO! Para acessar seus produtos escolha entre as opções ABAIXO:</h6>
     </div>
 
     <div id="embed-video">
