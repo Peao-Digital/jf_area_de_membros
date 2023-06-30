@@ -11,10 +11,14 @@
 
     public function __invoke(Request $request, RequestHandler $handler): Response {
       $headers = $request->getHeaders();
+      $auth = '';
+      if (isset($headers['Authorization'])) {
+        $auth = is_array($headers['Authorization'])? $headers['Authorization'][0]: $headers['Authorization'];
+      } else if(isset($headers['Doppus-token'])) {
+        $auth = is_array($headers['Doppus-token'])? $headers['Doppus-token'][0]: $headers['Doppus-token'];
+      }
 
-      $token = str_replace(
-        ['Token', 'Bearer', ''], '', $headers['Authorization'][0]??''
-      );
+      $token = str_replace(['Token', 'Bearer', ''], '', $auth);
 
       if($token == $_ENV['WEBHOOK_TOKEN']) {
         $response = $handler->handle($request);
