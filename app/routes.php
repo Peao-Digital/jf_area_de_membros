@@ -24,7 +24,7 @@
       return (new ProdutoController)->consultar($request, $response);
     })->add(new CsrfMiddleware($guard));
 
-    $app->any('/webhook', WebhookController::class)->add(new TokenMiddleware());
+    $app->any('/webhook', WebhookController::class);
     //->add(new TokenMiddleware())
 
     $app->any('/leitor', function($request, $response, $args) use ($app, $guard) {
