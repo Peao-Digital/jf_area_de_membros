@@ -69,14 +69,14 @@ $(document).ready(function () {
     if (isLiberado) {
       return `
         <a class="btn-product open-modal" data-value="${productId}" data-name="${productName}" href="#">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
             <div class="card-body"></div>
           </div>
         </a>`;
     } else {
       return `
         <a class="btn-product" href="${linkAlt}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
             </div>
@@ -94,7 +94,7 @@ $(document).ready(function () {
           <input type="hidden" class="valid" name="csrf_name" value="${csrfName}">
           <input type="hidden" class="valid" name="csrf_value" value="${csrfValue}">
           <button class="btn-product" type="submit">
-            <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
+            <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
               <div class="card-body"></div>
             </div>
           </button>
@@ -102,7 +102,7 @@ $(document).ready(function () {
     } else {
       return `
         <a class="btn-product" href="${linkAlt}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
             </div>
@@ -116,7 +116,7 @@ $(document).ready(function () {
     if (isLiberado) {
       return `
         <a class="btn-product" id="product-${productId}" data-liberado="${isLiberado}" href="${link}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
             <div class="card-body">
             </div>
           </div>
@@ -124,7 +124,7 @@ $(document).ready(function () {
     } else {
       return `
         <a class="btn-product" id="product-${productId}" data-liberado="${isLiberado}" href="${linkAlt}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
             </div>
