@@ -29,11 +29,11 @@ $(document).ready(function () {
     //https://api.whatsapp.com/send/?phone=5491025477& 
     const items = {
       '36673': { tipo: 'pdf', file: 'ebook.pdf', linkAlt: 'https://seucaminhodariqueza.com.br/caminhodariqueza?utm_content=area-de-membros' },
-      '76587': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seucaminhodariqueza.com.br/comunidade/?utm_content=area-membros' },
-      '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seucaminhodariqueza.com.br/comunidade/?utm_content=area-membros' },
+      '76587': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://secure.doppus.com/pay/PB0O09OMB0O09OGZ885Z5?utm_content=area-de-membros' },
+      '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://secure.doppus.com/pay/PB0O09OMB0O09OGZ885Z5?utm_content=area-de-membros' },
       '71102': {
         tipo: 'video',
-        linkAlt: 'https://seucaminhodariqueza.com.br/metodo-ganhe/?utm_content=area-membros',
+        linkAlt: 'https://secure.doppus.com/pay/PB0O09OMB0O09OGZ8J980?utm_content=area-de-membros',
         videos: [
           { nome: 'INTRO CURSO', link: 'https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=9481606c-eb6b-4886-a6f3-aa3afd61961f' },
           { nome: 'Trocando de conta', link: 'https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=9a8b3ee7-32dc-406f-ace7-5b737e3743ea' },
