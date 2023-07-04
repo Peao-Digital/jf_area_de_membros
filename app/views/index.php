@@ -30,7 +30,7 @@
   </div>
 
   <div class="suporte mt-4 mb-4">
-    <a class="btn-suporte" href="https://api.whatsapp.com/send/?phone=5491025477&">
+    <a class="btn-suporte" href="https://api.whatsapp.com/send?phone=555433243284&text=Ol%C3%A1,%20preciso%20falar%20sobre%20a%20plataforma%20Caminho%20da%20Riqueza">
       <p class="suporte-duvidas">FICOU COM DÚVIDAS</p>
       <p class="suporte-clique">Clique aqui e fale com o suporte</p>
     </a>
