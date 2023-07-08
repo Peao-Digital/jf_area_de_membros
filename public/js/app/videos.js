@@ -3,6 +3,9 @@ $(document).ready(function () {
   const BtnVoltar = $("#voltarBtn");
   const divEmbed = $("#embed-video");
   const divTitle = $("#aviso_video");
+  const toast = document.getElementById('toast');
+
+  toast.classList.add("show");
 
   const links = {
     1: { copy: "Assista a aula sobre uso do Aplicativo MEU INSS! Assista clicando no vídeo abaixo:", link: "https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=25f03c3e-31b1-41e0-9351-700465ced5d4" },
@@ -13,7 +16,7 @@ $(document).ready(function () {
     6: { copy: "Assista a aula com o Átila e saiba como ganhar uma renda extra! Assista clicando no vídeo abaixo:", link: "https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=2490f95b-2eaf-48bc-b6f8-feea329b1003" },
     7: { copy: "Assista a aula com o Ezequiel e saiba como investir e rentabilizar o seu dinheiro! Assista clicando no vídeo abaixo:", link: "https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=601d204d-ce04-4ee3-a340-567db1dd9935" },
     8: { copy: "Assista a aula com o Felipe e saiba como aliviar as suas dores! Assista clicando no vídeo abaixo:", link: "https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=fd50352b-9232-4c51-8c1d-ef5dbf240ad6" },
-    9: { copy: "Assista a aula com a Jureci e saiba como ter uma alimentação mais saudável! Assista clicando no vídeo abaixo:", link: "https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=96a212fb-2e93-4fe1-b15f-bac900c87c85" },
+    9: { copy: "Assista a aula com a Juraci e saiba como ter uma alimentação mais saudável! Assista clicando no vídeo abaixo:", link: "https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=96a212fb-2e93-4fe1-b15f-bac900c87c85" },
     10: { copy: "Assista a aula com o Mathias e saiba como ter mais saúde física! Assista clicando no vídeo abaixo:", link: "https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=9cbc1894-40f1-474c-a4ea-188fbf5d5b1a" },
     12: { copy: "Assista a aula com a Dr. Michele e saiba como ter uma pele de pessego! Assista clicando no vídeo abaixo:", link: "https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=b9c88441-3dd1-4c12-9c09-3bb416bb1f1f" },
     13: { copy: "Assista a aula com o Jr. Marabá e saiba como ter uma vida mais feliz! Assista clicando no vídeo abaixo:", link: "https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=018b0999-c51c-4785-82af-f4e522fd15ec" },
@@ -34,6 +37,10 @@ $(document).ready(function () {
     window.history.back();
     window.close();
   });
+
+  setTimeout(function () {
+    toast.classList.remove("show");
+  }, 5000);
 
   obter_embed();
 

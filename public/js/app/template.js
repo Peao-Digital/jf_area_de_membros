@@ -2,7 +2,7 @@ $(document).ready(function () {
 
   const wpp = $("#btn-wpp");
   const divFlutuante = $(".div_flutuant");
-  const container = $("#container .products-container");
+  const container = $("body");
 
   const backbutton = $("#BackButton");
 

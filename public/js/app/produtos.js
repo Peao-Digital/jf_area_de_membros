@@ -7,6 +7,23 @@ $(document).ready(function () {
     modalProdutos.modal("hide");
   });
 
+  const video_links = [
+    { link: '/video?id=1' },
+    { link: '/video?id=2' },
+    { link: '/video?id=3' },
+    { link: '/video?id=4' },
+    { link: '/video?id=5' },
+    { link: '/video?id=6' },
+    { link: '/video?id=7' },
+    { link: '/video?id=8' },
+    { link: '/video?id=9' },
+    { link: '/video?id=10' },
+    { link: '/video?id=12' },
+    { link: '/video?id=13' },
+    { link: '/video?id=14' },
+    { link: '/video?id=15' },
+  ];
+
   const ObterDispositivo = (screenWidth) => {
     if (screenWidth >= 1000) {
       return 'desktop';
@@ -18,19 +35,8 @@ $(document).ready(function () {
   };
 
   const ObterItem = (productId) => {
-
-
-    /*
-      Caminho da Riqueza - #36673
-      Comunidade da Riqueza (SEMESTRAL) - #76587
-      Comunidade da Riqueza (ANUAL) - #76204 
-      MÉTODO: Ganhe mais dinheiro com as suas finanças - #71102 
-    */
-    //https://api.whatsapp.com/send/?phone=5491025477& 
     const items = {
       '36673': { tipo: 'pdf', file: 'ebook.pdf', linkAlt: 'https://seucaminhodariqueza.com.br/caminhodariqueza?utm_content=area-de-membros' },
-      '76587': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://secure.doppus.com/pay/PB0O09OMB0O09OGZ885Z5?utm_content=area-de-membros' },
-      '76204': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://secure.doppus.com/pay/PB0O09OMB0O09OGZ885Z5?utm_content=area-de-membros' },
       '71102': {
         tipo: 'video',
         linkAlt: 'https://secure.doppus.com/pay/PB0O09OMB0O09OGZ8J980?utm_content=area-de-membros',
@@ -69,14 +75,14 @@ $(document).ready(function () {
     if (isLiberado) {
       return `
         <a class="btn-product open-modal" data-value="${productId}" data-name="${productName}" href="#">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=2')">
             <div class="card-body"></div>
           </div>
         </a>`;
     } else {
       return `
         <a class="btn-product" href="${linkAlt}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=2')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
             </div>
@@ -93,16 +99,16 @@ $(document).ready(function () {
           <input type="hidden" name="pdf" value="${file}">
           <input type="hidden" class="valid" name="csrf_name" value="${csrfName}">
           <input type="hidden" class="valid" name="csrf_value" value="${csrfValue}">
-          <button class="btn-product" type="submit">
-            <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
+          <button class="btn-product" id="product-${productId}" data-liberado="${isLiberado}" type="submit">
+            <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=2')">
               <div class="card-body"></div>
             </div>
           </button>
         </form>`;
     } else {
       return `
-        <a class="btn-product" href="${linkAlt}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
+        <a class="btn-product" href="${linkAlt}" id="product-${productId}" data-liberado="${isLiberado}">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=2')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
             </div>
@@ -116,7 +122,7 @@ $(document).ready(function () {
     if (isLiberado) {
       return `
         <a class="btn-product" id="product-${productId}" data-liberado="${isLiberado}" href="${link}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=2')">
             <div class="card-body">
             </div>
           </div>
@@ -124,7 +130,7 @@ $(document).ready(function () {
     } else {
       return `
         <a class="btn-product" id="product-${productId}" data-liberado="${isLiberado}" href="${linkAlt}">
-          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=1')">
+          <div class="card card-product mb-2" style="background-image: url('img/${device}/${productId}.png?v=2')">
             <div class="card-body">
               <i class="fa-solid fa-lock"></i>
             </div>
@@ -151,7 +157,7 @@ $(document).ready(function () {
     return parametros;
   };
 
-  const buscar_produtos = (params) => {
+  const buscar_produtos = (params, video_links) => {
     const csrfParams = `&csrf_name=${params[1]}&csrf_value=${params[2]}`;
     const url = `produtos/consultar?cliente=${params[0]}${csrfParams}`;
 
@@ -159,11 +165,9 @@ $(document).ready(function () {
     const device = ObterDispositivo(screenWidth);
 
     mascara.show();
-
     fetch(url, { method: 'GET' })
       .then(response => response.json())
       .then(json => {
-
         json.forEach((val) => {
           const isLiberado = val.liberado === 'S';
           const item = ObterItem(val.produto_id);
@@ -173,20 +177,30 @@ $(document).ready(function () {
 
             if (item.tipo == 'video') {
               html = CardVideo(device, val.produto_id, val.nome_produto, item.linkAlt, isLiberado);
-
             } else if (item.tipo == 'link') {
               html = CardLink(device, val.produto_id, item.link, item.linkAlt, isLiberado);
-
-
             } else {
               html = CardPDF(device, val.produto_id, item.file, item.linkAlt, isLiberado, params[1], params[2]);
             }
 
             divProducts.append(html);
           }
-
-
         });
+
+        let pdf = $(`#product-36673`);
+
+        if (pdf.data('liberado') === true) {
+          let html = '';
+
+          for (i = 1; i <= 15; i++) {
+            if (i !== 11) {
+              html = CardLink(device, i, `https://acesso.seucaminhodariqueza.com.br/video?id=${i}`, '#', true);
+              divProducts.append(html);
+            }
+          }
+
+          $("#product-15").addClass("marginProduct");
+        }
 
         divProducts.on("click", ".open-modal", function () {
           var modalbody = modalProdutos.find(".modal-body");
@@ -199,35 +213,22 @@ $(document).ready(function () {
 
           modalbody.empty();
           var embedHtml = "";
-          item.videos.forEach((video) => {
 
+          item.videos.forEach((video) => {
             embedHtml += `
-          <div class="videos">
-            <p>${video.nome}</p>
-            <div class="embed-responsive">
-              <iframe class="embed-responsive-item" src="${video.link}" allowfullscreen></iframe>
-            </div>
-          </div>
-          <br>`;
+              <div class="videos">
+                <p>${video.nome}</p>
+                <div class="embed-responsive">
+                  <iframe class="embed-responsive-item" src="${video.link}" allowfullscreen></iframe>
+                </div>
+              </div>
+              <br>`;
           });
 
           modaltitle.html(productName)
           modalbody.html(embedHtml);
           modalProdutos.modal("show");
         });
-
-        let productCard1 = $(`#product-76587`);
-        let productCard2 = $(`#product-76204`);
-
-        if(productCard1.data('liberado') === false){
-          productCard1.addClass("oculto");
-        }else if(productCard2.data('liberado') === false){
-          productCard2.addClass("oculto");
-        }
-
-        if (productCard1.hasClass('oculto') && productCard2.hasClass('oculto')) {
-          productCard2.removeClass('oculto');
-        }
 
         mascara.hide();
       })
@@ -238,5 +239,5 @@ $(document).ready(function () {
   };
 
   const params = buscar_cliente();
-  buscar_produtos(params);
+  buscar_produtos(params, video_links);
 });
