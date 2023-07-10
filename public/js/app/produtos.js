@@ -8,20 +8,21 @@ $(document).ready(function () {
   });
 
   const video_links = [
-    { link: '/video?id=1' },
-    { link: '/video?id=2' },
-    { link: '/video?id=3' },
-    { link: '/video?id=4' },
-    { link: '/video?id=5' },
-    { link: '/video?id=6' },
-    { link: '/video?id=7' },
-    { link: '/video?id=8' },
-    { link: '/video?id=9' },
-    { link: '/video?id=10' },
-    { link: '/video?id=12' },
-    { link: '/video?id=13' },
-    { link: '/video?id=14' },
-    { link: '/video?id=15' },
+    { id: 1, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=1' },
+    { id: 2, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=2' },
+    { id: 3, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=3' },
+    { id: 4, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=4' },
+    { id: 5, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=5' },
+    { id: 6, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=6' },
+    { id: 7, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=7' },
+    { id: 8, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=8' },
+    { id: 9, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=9' },
+    { id: 10, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=10' },
+    { id: 11, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=11' },
+    { id: 12, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=12' },
+    { id: 13, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=13' },
+    { id: 14, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=14' },
+    { id: 15, link: 'https://acesso.seucaminhodariqueza.com.br/video?id=15' }
   ];
 
   const ObterDispositivo = (screenWidth) => {
@@ -187,19 +188,23 @@ $(document).ready(function () {
           }
         });
 
-        let pdf = $(`#product-36673`);
 
+        let pdf = $(`#product-36673`);
+        
         if (pdf.data("liberado") === true) {
           let html = "";
 
-          for (i = 1; i <= 15; i++) {
-            if (i !== 11) {
-              html = CardLink(device, i, `https://acesso.seucaminhodariqueza.com.br/video?id=${i}`, "#", true);
+          video_links.map((val, i) => {
+            i++
+
+            if (val.id !== 11) {
+              html = CardLink(device, val.id, val.link, "#", true);
               divProducts.append(html);
             }
-          }
+          });
 
-          $("#product-15").addClass("marginProduct");
+          let lastChild = $("#products").children().last();
+          lastChild.addClass("marginProduct");
         }
 
         divProducts.on("click", ".open-modal", function () {
