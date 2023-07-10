@@ -40,7 +40,7 @@ $(document).ready(function () {
 
   setTimeout(function () {
     toast.classList.remove("show");
-  }, 5000);
+  }, 10000);
 
   obter_embed();
 

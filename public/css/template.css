@@ -18,6 +18,14 @@ section#container,
 
 .logo-empresa {
   margin-bottom: 2.5rem;
+  margin-top: 2.5rem;
+}
+
+.row-video-products {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
 }
 
 .footer {
@@ -145,14 +153,19 @@ hr {
 .toast {
   position: absolute;
   left: 3%;
-  bottom: 5%;
+  bottom: 6%;
   background-color: #003d73;
   color: white;
   font-size: 13px;
   width: 300px;
-  height: 140px;
+  height: 125px;
   z-index: 1;
   text-align: justify;
+}
+
+.toast-body{
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .toast::before {
@@ -165,7 +178,6 @@ hr {
   top: 5%;
   transform: rotate(45deg);
 }
-
 
 @media screen and (max-width:350px) {
 
