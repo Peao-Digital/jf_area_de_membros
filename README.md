@@ -30,10 +30,11 @@
       </ul>
       <h3><b>Fluxo do programa</b></h3>
       <ul>
-        <li>Página inicial (/index): Tela com o campo de cpf\cnpj</li>
+        <li>Página inicial (/index): Tela com o campo de cpf</li>
         <li>Página de produtos (/produtos): Tela de exibição dos produtos cadastrados e liberados para o cliente que acessou a página anterior</li>
         <li>Rota de consulta de produtos (/produtos/consultar?cliente=XXXX): Rota que retorna em formato JSON os dados de produtos do cliente</li>
         <li>Todas as rotas com exceção da página inicial e videos necessitam dos parametros de CSRF que existem na página (csrf_name, csrf_value)</li>
+        <li>Obs. Novos itens precisam ser cadastrados no array itens no arquivo public/js/produtos.js</li>
       </ul>
       <h3><b>Base de dados</b></h3>
       <ul>

@@ -34,22 +34,14 @@
       $cliente = isset($request->getQueryParams()['cliente'])? $request->getQueryParams()['cliente']:null;
       
       $sql = 
-        "WITH liberados AS (
-          SELECT t_item.item_id, t_item.liberado
-          FROM api_transacao_item t_item
-          LEFT JOIN api_cliente cliente on (cliente.id = t_item.cliente_id)
-          WHERE REGEXP_REPLACE(cliente.documento, '[/.-]+', '') = REGEXP_REPLACE(:CLIENTE, '[/.-]+', '')
-        )
-        SELECT item.codigo_item produto_id, item.nome nome_produto, item.descricao, item.imagem,
-        (CASE WHEN liberados.item_id is not null THEN liberados.liberado ELSE 'N' END) liberado
-        FROM api_item item
-        LEFT JOIN liberados on (liberados.item_id = item.id)
-        ORDER BY (
-          FIELD(item.codigo_item, 36673, 76204,76587,71102)
-        )";
+        "SELECT item.codigo_item
+        FROM api_transacao_item t_item
+        INNER JOIN api_item item on (item.id = t_item.item_id)
+        INNER JOIN api_cliente cliente on (cliente.id = t_item.cliente_id)
+        WHERE REGEXP_REPLACE(cliente.documento, '[/.-]+', '') = REGEXP_REPLACE(:CLIENTE, '[/.-]+', '')
+          and t_item.liberado = 'S'";
 
       $dados = $db->query($sql, [':CLIENTE' => $cliente]);
-      
       $response->getBody()->write(json_encode($dados));
       return $response
         ->withHeader('content-type', 'application/json');
