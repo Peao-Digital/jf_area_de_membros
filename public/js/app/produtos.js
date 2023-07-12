@@ -38,6 +38,10 @@ $(document).ready(function () {
   const ObterItem = (productId) => {
     const items = {
       '36673': { tipo: 'pdf', file: 'ebook.pdf', linkAlt: 'https://seucaminhodariqueza.com.br/caminhodariqueza?utm_content=area-de-membros' },
+      '48643': { original: 36673 },
+
+      '59563': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', linkAlt: 'https://seucaminhodariqueza.com.br/comunidade/?utm_content=area-membros' },
+
       '71102': {
         tipo: 'video',
         linkAlt: 'https://secure.doppus.com/pay/PB0O09OMB0O09OGZ8J980?utm_content=area-de-membros',
@@ -61,7 +65,10 @@ $(document).ready(function () {
           { nome: 'Sua conta sem despesas', link: 'https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=012e8166-513f-4965-8c79-682ee135a3ec' },
           { nome: 'Não caia nisso!', link: 'https://player-vz-03f41f36-332.tv.pandavideo.com.br/embed/?v=b3611c0d-d15b-4fb2-aacf-f1ee9a3bf325' },
         ]
-      }
+      },
+      '26649': {
+        original: 71102,
+      },
     };
 
     return items[productId];
@@ -169,28 +176,39 @@ $(document).ready(function () {
     fetch(url, { method: 'GET' })
       .then(response => response.json())
       .then(json => {
+        let itens_renderizados = [];
+
         json.forEach((val) => {
           const isLiberado = val.liberado === 'S';
-          const item = ObterItem(val.produto_id);
+          let item = ObterItem(val.produto_id);
+
+          if (item.original != undefined) {
+            val.produto_id = item.original;
+            item = ObterItem(item.original);
+          }
 
           let html = '';
-          if (item != undefined) {
+          if (itens_renderizados.indexOf(val.produto_id) == -1) {
+            itens_renderizados.push(val.produto_id);
 
-            if (item.tipo == 'video') {
-              html = CardVideo(device, val.produto_id, val.nome_produto, item.linkAlt, isLiberado);
-            } else if (item.tipo == 'link') {
-              html = CardLink(device, val.produto_id, item.link, item.linkAlt, isLiberado);
-            } else {
-              html = CardPDF(device, val.produto_id, item.file, item.linkAlt, isLiberado, params[1], params[2]);
+            if (item != undefined) {
+
+              if (item.tipo == 'video') {
+                html = CardVideo(device, val.produto_id, val.nome_produto, item.linkAlt, isLiberado);
+              } else if (item.tipo == 'link') {
+                html = CardLink(device, val.produto_id, item.link, item.linkAlt, isLiberado);
+              } else {
+                html = CardPDF(device, val.produto_id, item.file, item.linkAlt, isLiberado, params[1], params[2]);
+              }
+
+              divProducts.append(html);
             }
 
-            divProducts.append(html);
           }
         });
-
-
-        let pdf = $(`#product-36673`);
         
+        let pdf = $(`#product-36673`);
+
         if (pdf.data("liberado") === true) {
           let html = "";
 
