@@ -20,7 +20,7 @@
 
       $token = str_replace(['Token', 'Bearer', ''], '', $auth);
 
-      if($token == $_ENV['WEBHOOK_TOKEN']) {
+      if(in_array($token, $_ENV['WEBHOOK_TOKEN'])) {
         $response = $handler->handle($request);
         return $response;
       }

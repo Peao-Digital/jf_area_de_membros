@@ -22,7 +22,7 @@
             <li>DB_DATABASE (Nome da base do banco)</li>
             <li>DB_ENGINE (Qual o banco de dados utilizado, Ex. "mysql")</li>
             <li>BASE_PATH (Se possuir um dominio deixar vazio "", senão informar o caminho até a pasta public, Ex. "/jf_area_de_membros/public")</li>
-            <li>WEBHOOK_TOKEN (CHAVE SECRETA DO WEBHOOK)</li>
+            <li>WEBHOOK_TOKEN (Token do Webhook, separado por virgula)</li>
           </ul>
         </li>
         <li>Executar o arquivo db.sql na base de dados escolhida</li>
