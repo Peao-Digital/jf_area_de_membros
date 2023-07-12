@@ -27,9 +27,9 @@
     error_reporting(E_ALL);
   }
 
-  if(isset($_ENV['TOKENS_TICTO'])) {
-    $_ENV['TOKENS_TICTO'] = explode(',', $_ENV['TOKENS_TICTO']);
+  if(isset($_ENV['WEBHOOK_TOKEN'])) {
+    $_ENV['WEBHOOK_TOKEN'] = explode(',', $_ENV['WEBHOOK_TOKEN']);
   } else {
-    $_ENV['TOKENS_TICTO'] = [];
+    $_ENV['WEBHOOK_TOKEN'] = [];
   }
   
