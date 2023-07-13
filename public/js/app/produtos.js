@@ -8,9 +8,9 @@ $(document).ready(function () {
 
   const itens = {
     '36673': { tipo: 'pdf', file: 'ebook.pdf', nome: 'MAPA DA RIQUEZA', linkAlt: 'https://seucaminhodariqueza.com.br/caminhodariqueza?utm_content=area-de-membros' },
-    '48643': { original: 36673 },
+    '48643': { original: '36673' },
     '59563': { tipo: 'link', link: 'https://www.redirectmais.com/run/8978', nome:'', linkAlt: 'https://seucaminhodariqueza.com.br/comunidade/?utm_content=area-membros' },
-    '26649': { original: 71102 },
+    '26649': { original: '71102' },
     '71102': {
       tipo: 'video',
       nome: 'MÉTODO GANHE + DIN',
@@ -189,7 +189,7 @@ $(document).ready(function () {
     for (codigo_item in itens) {
 
       let item = itens[codigo_item];
-      let isLiberado = produtos_liberados.find(i => i.codigo_item === codigo_item) != undefined;
+      let isLiberado = produtos_liberados.find(i => i.codigo_item == codigo_item) != undefined;
 
       //Novo item representando um item antigo
       if (item.original != undefined) {
